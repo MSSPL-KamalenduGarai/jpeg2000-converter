@@ -22,13 +22,17 @@ run_ls = ->
   )
 
 run_ffprobe = ->
-  ffprobe = child_process.spawn('ffprobe', ['-print_format', 'json', '/home/jason/code/canfee/canfee-out.mp4'])
+  ffprobe = child_process.spawn('ffprobe',
+    ['-print_format', 'json', '/home/jason/code/canfee/canfee-out.mp4'])
 
   # by default it logs to stderr
   ffprobe.stderr.on('data', (data) ->
     console.log("stderr: #{data}")
     # console.log data.toString()
-    ffprobe_out = data.toString().replace(/(?:\r\n|\r|\n)/g, '<br>').replace('  ', '&nbsp;&nbsp;').replace("\t", '&nbsp;&nbsp;')
+    ffprobe_out = data.toString()
+      .replace(/(?:\r\n|\r|\n)/g, '<br>')
+      .replace('  ', '&nbsp;&nbsp;')
+      .replace("\t", '&nbsp;&nbsp;')
     $('#container').append(ffprobe_out)
 
     scroll_terminal()
@@ -42,12 +46,12 @@ run_ffprobe = ->
 run_du = ->
   du = child_process.spawn('du', ['-h', '.'])
 
-  du.stdout.on('data', (data) ->
+  du.stdout.on 'data', (data) ->
     du_out = data.toString().replace(/(?:\r\n|\r|\n)/g, '<br>')
     console.log 'du data'
     $('#container').append(du_out)
     scroll_terminal()
-  )
+  
 
   du.on('close', -> console.log 'closed')
 

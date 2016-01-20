@@ -9,7 +9,7 @@ body {
   color: red;
 }
 
-#container {
+.content-container {
   overflow: auto;
   height:600px;
 }
