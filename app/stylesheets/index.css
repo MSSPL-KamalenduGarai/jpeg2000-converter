@@ -14,6 +14,16 @@ body {
   height:600px;
 }
 
+.dropzone {
+  border:2px dotted #0B85A1;
+  /*width:400px;*/
+  color:#92AAB0;
+  text-align:left;vertical-align:middle;
+  padding:10px 10px 10 10px;
+  margin-bottom:10px;
+  font-size:200%;
+}
+
 /*header {
 	position: absolute;
 	width: 500px;

@@ -1,4 +1,4 @@
-$ = require('jQuery')
+$ = require('jquery')
 child_process = require('child_process')
 
 run_ls = ->
@@ -51,7 +51,7 @@ run_du = ->
     console.log 'du data'
     $('#container').append(du_out)
     scroll_terminal()
-  
+
 
   du.on('close', -> console.log 'closed')
 
