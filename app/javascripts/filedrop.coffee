@@ -10,7 +10,10 @@ handle_files = (files) ->
       (output) ->
         image = output.toString('base64')
         line = hbs_render('file_row', {path: file.path,image: image })
-        $('#container').append(line))
+        $('#container').prepend(line))
+  # Note we don't need to ask permission!
+  new Notification("#{files.length} image(s) added and ready to be processed!")
+  $('#commands').show()
 
 $(document).ready ->
   $(document).on 'dragover,drop', (e) ->
@@ -40,9 +43,13 @@ $(document).ready ->
     return false
 
   $('#file-select-trigger').on 'click', (e) ->
+    e.preventDefault()
     console.log('file-select-trigger')
     input = $('#file-select-input')
     input.click()
-    handle_files(input[0].files)
     console.log input[0].files
-    e.preventDefault()
+
+  $('#file-select-input').on 'change', (e) ->
+    # e.preventDefault()
+    input = $('#file-select-input')
+    handle_files(input[0].files)

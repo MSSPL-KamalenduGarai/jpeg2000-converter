@@ -7,7 +7,7 @@ onClosed = ->
 createMainWindow = ->
   win = new (electron.BrowserWindow)(
     width: 600
-    height: 400)
+    height: 300)
   # win.loadURL(`file://${__dirname}/index.html`);
   win.loadURL("file://#{__dirname}/app/views/index.html")
   win.on 'closed', onClosed

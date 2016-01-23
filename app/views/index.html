@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title>IIIF Conversion GUI</title>
-    <link rel="stylesheet" href="../stylesheets/index.css" type="text/css">
     <link rel="stylesheet" href="../../node_modules/foundation-sites/dist/foundation.css" type="text/css">
+    <link rel="stylesheet" href="../../node_modules/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/index.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/file-row.less" type="text/css">
     <script src="../javascripts/cmd.coffee"></script>
     <script src="../javascripts/filedrop.coffee"></script>
   </head>
@@ -20,12 +22,15 @@
           <div class="dragdroptext" id="file-select-trigger"><a href="#">Select files</a></div>
           <input type="file" id="file-select-input" class="file-select-input" multiple accept="image/*" style="display:none">
         </div>
-        <!-- <a href="#" id="ls">ls</a>
-        <a href="#" id="ffprobe">ffprobe</a>
-        <a href="#" id="du">du</a> -->
+        <div id="commands" class="commands">
+          <a href="#" class='convert-jpeg2000-command button' id='convert-jpeg2000-command'>convert all images to JPEG2000</a>
+        </div>
       </section>
       <div id="container" class="content-container"></div>
       <!-- <footer></footer> -->
+      <!-- <a href="#" id="ls">ls</a>
+      <a href="#" id="ffprobe">ffprobe</a>
+      <a href="#" id="du">du</a> -->
     </div>
   </body>
 </html>
