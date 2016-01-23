@@ -1,9 +1,11 @@
 $ = require('jquery')
-
-console.log('hi')
+hbs_render = require("#{__dirname}/../javascripts/hbs_render")
 
 handle_files = (files) ->
-  console.log files
+  for file in files
+    line = hbs_render('file_row', {path: file.path})
+
+    $('#container').append(line)
 
 $(document).ready ->
   $(document).on 'dragover,drop', (e) ->
