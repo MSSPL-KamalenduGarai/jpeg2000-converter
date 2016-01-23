@@ -21,6 +21,7 @@
     "electron"
   ],
   "dependencies": {
+    "async": "^1.5.2",
     "electron-debug": "^0.5.0",
     "font-awesome": "^4.5.0",
     "foundation-sites": "^6.1.1",
