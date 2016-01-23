@@ -2,6 +2,10 @@ $ = require('jquery')
 tempfile = require('tempfile')
 child_process = require('child_process')
 async = require('async')
+pather = require('path')
+electron = require('electron')
+iiif_conversion_dir =
+  electron.remote.getCurrentWindow().iiif_conversion_dir
 
 # For some reason sharp does not do a good job of converting some images
 # to a TIFF that kdu_compress will like so we use imagemagick.
@@ -44,7 +48,11 @@ convert_image = (file_row, async_callback) ->
   path = $(file_row).children('.path-to-file').text()
   tif_tmp = tempfile('.tiff')
   tif_tmp_rgba = tempfile('.tiff')
-  jp2_file = tempfile('.jp2')
+  extname = pather.extname(path)
+  basename = pather.basename(path, extname)
+  console.log iiif_conversion_dir
+  jp2_file = pather.join(iiif_conversion_dir, basename + '.jp2')
+  console.log jp2_file
   # convert to TIFF
   $(file_row).find('.fa-spinner').show()
 

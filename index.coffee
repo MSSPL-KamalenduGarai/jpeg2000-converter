@@ -17,6 +17,10 @@ createMainWindow = ->
 electron = require('electron')
 app = electron.app
 
+fs = require('fs')
+expand_home_dir = require('expand-home-dir')
+iiif_conversion_dir = expand_home_dir('~/iiif_conversion')
+
 # report crashes to the Electron project
 require('crash-reporter').start()
 
@@ -37,3 +41,10 @@ app.on 'activate', ->
 
 app.on 'ready', ->
   mainWindow = createMainWindow()
+  # create the output directory if it doesn't exist already
+  mainWindow.iiif_conversion_dir = iiif_conversion_dir
+  fs.stat(iiif_conversion_dir, (err, stats) ->
+    console.log [err, stats]
+    if err
+      fs.mkdir iiif_conversion_dir
+  )
