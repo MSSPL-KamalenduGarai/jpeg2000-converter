@@ -18,14 +18,10 @@ handle_files = (files) ->
           $('#commands').show()
           async_callback()
       )
-    () ->
+    -> #done
       # Note we don't need to ask permission!
       new Notification("#{index} image(s) added and ready to be processed!")
   )
-
-
-
-
 
 $(document).ready ->
   $(document).on 'dragover,drop', (e) ->
@@ -62,6 +58,5 @@ $(document).ready ->
     console.log input[0].files
 
   $('#file-select-input').on 'change', (e) ->
-    # e.preventDefault()
     input = $('#file-select-input')
     handle_files(input[0].files)

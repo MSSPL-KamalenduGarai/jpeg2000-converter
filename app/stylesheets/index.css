@@ -41,6 +41,10 @@ body {
   display: none;
 }
 
+.all-done-checkmark {
+  display: none;
+}
+
 /*header {
   position: absolute;
   width: 500px;

@@ -29,6 +29,15 @@ kdu_compress = (tif, output_file, async_callback) ->
     async_callback()
   )
 
+update_completed_number = () ->
+  completed_number_text = $('.completed_number').text()
+  completed_number =
+    if !!completed_number_text
+    then parseInt(completed_number_text) + 1
+    else 1
+  console.log completed_number
+  $('.completed_number').html(completed_number)
+  console.log "completed_number: #{completed_number}"
 
 convert_image = (file_row, async_callback) ->
   console.log file_row
@@ -49,9 +58,8 @@ convert_image = (file_row, async_callback) ->
     (callback) ->
       $(file_row).find('.fa-spinner').hide()
       $(file_row).find('.output-jp2').append(jp2_file)
+      update_completed_number()
       console.log "original file processed: #{path}"
-      completed_number = +$('#completed_number').text() + 1
-      $('.completed_number').html(completed_number)
       callback()
       async_callback()
   ],
@@ -65,7 +73,7 @@ $(document).ready ->
     $("#convert-overall-spinner").show()
     # TODO: store files somewhere and then process from there instead of
     # from looking at the file page
-    async.each(
+    async.eachSeries(
       $('.file-row')
       (file_row, callback) ->
         convert_image(file_row, callback)
