@@ -24,11 +24,13 @@
           <input type="file" id="file-select-input" class="file-select-input" multiple accept="image/*" style="display:none">
         </div>
         <div id="commands" class="commands">
-          <a href="#" class='convert-jpeg2000-command button' id='convert-jpeg2000-command'>convert all images to JPEG2000</a>
+          <a href="#" class='convert-jpeg2000-command button' id='convert-jpeg2000-command'>convert all <span class="image_number"></span> images to JPEG2000</a>
         </div>
         <div id="convert-progress" class="convert-progress">
           <span id="convert-overall-spinner" class=" convert-overall-spinner">
-            converting all images <i class="fa fa-spinner fa-pulse" ></i>
+            converting <span class="completed_number"></span> of
+            <span class="image_number"></span> images
+            <i class="fa fa-spinner fa-pulse" ></i>
           </span>
         </div>
       </section>

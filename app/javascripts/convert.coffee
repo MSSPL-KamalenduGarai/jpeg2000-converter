@@ -50,6 +50,8 @@ convert_image = (file_row, async_callback) ->
       $(file_row).find('.fa-spinner').hide()
       $(file_row).find('.output-jp2').append(jp2_file)
       console.log "original file processed: #{path}"
+      completed_number = +$('#completed_number').text() + 1
+      $('.completed_number').html(completed_number)
       callback()
       async_callback()
   ],
@@ -67,8 +69,10 @@ $(document).ready ->
       $('.file-row')
       (file_row, callback) ->
         convert_image(file_row, callback)
+      # once they are all done this callback gets triggered
       (err) ->
         $("#convert-overall-spinner").hide()
+        $("#all-done-checkmark").show()
     )
 
 kdu_command = (tif, output_file) ->

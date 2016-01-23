@@ -1,19 +1,31 @@
 $ = require('jquery')
 hbs_render = require("#{__dirname}/../javascripts/hbs_render")
 sharp = require('sharp')
+async = require('async')
 
 handle_files = (files) ->
-  for file in files
-    console.log file
-    do (file) ->
+  index = 0
+  async.each(
+    files
+    (file, async_callback) ->
       sharp(file.path).resize(null, 100).toBuffer().then(
         (output) ->
           image = output.toString('base64')
           line = hbs_render('file_row', {path: file.path,image: image })
-          $('#container').prepend(line))
-  # Note we don't need to ask permission!
-  new Notification("#{files.length} image(s) added and ready to be processed!")
-  $('#commands').show()
+          $('#container').prepend(line)
+          index++
+          $('.image_number').html(index)
+          $('#commands').show()
+          async_callback()
+      )
+    () ->
+      # Note we don't need to ask permission!
+      new Notification("#{index} image(s) added and ready to be processed!")
+  )
+
+
+
+
 
 $(document).ready ->
   $(document).on 'dragover,drop', (e) ->
