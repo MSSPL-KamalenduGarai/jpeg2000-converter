@@ -37,7 +37,9 @@ body {
   display:none;
 }
 
-
+.convert-overall-spinner {
+  display: none;
+}
 
 /*header {
   position: absolute;
