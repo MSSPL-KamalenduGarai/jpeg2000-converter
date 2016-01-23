@@ -1,11 +1,20 @@
 $ = require('jquery')
 hbs_render = require("#{__dirname}/../javascripts/hbs_render")
+sharp = require('sharp')
+tempfile = require('tempfile')
 
 handle_files = (files) ->
   for file in files
-    line = hbs_render('file_row', {path: file.path})
+    temp = tempfile('.png')
+    sharp(file.path).resize(null, 100).toBuffer().then(
+      (output) ->
+        image = output.toString('base64')
+        line = hbs_render('file_row', {path: file.path,image: image })
 
-    $('#container').append(line)
+        $('#container').append(line)
+    )
+
+
 
 $(document).ready ->
   $(document).on 'dragover,drop', (e) ->
