@@ -14,7 +14,12 @@
         <h1>IIIF Conversion GUI</h1>
       </header>
       <section class="main">
-        <div class="dropzone" id="dropzone">Drag &amp; Drop Files Here</div>
+        <div class="dropzone" id="dropzone">
+          <div class="dragdroptext">Drop your files here</div>
+          <div class="dragdroptext">or</div>
+          <div class="dragdroptext" id="file-select-trigger"><a href="#">Select files</a></div>
+          <input type="file" id="file-select-input" class="file-select-input" multiple accept="image/*" style="display:none">
+        </div>
         <!-- <a href="#" id="ls">ls</a>
         <a href="#" id="ffprobe">ffprobe</a>
         <a href="#" id="du">du</a> -->

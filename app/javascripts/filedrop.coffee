@@ -10,11 +10,7 @@ handle_files = (files) ->
       (output) ->
         image = output.toString('base64')
         line = hbs_render('file_row', {path: file.path,image: image })
-
-        $('#container').append(line)
-    )
-
-
+        $('#container').append(line))
 
 $(document).ready ->
   $(document).on 'dragover,drop', (e) ->
@@ -27,6 +23,7 @@ $(document).ready ->
     console.log 'dropped'
     files = e.originalEvent.dataTransfer.files
     handle_files(files)
+    $('#dropzone').removeClass('dragover')
 
   $('#dropzone').on 'dragover', (e) ->
     e.preventDefault()
@@ -35,8 +32,17 @@ $(document).ready ->
 
   $('#dropzone').on 'dragenter', (e) ->
     e.preventDefault()
+    $('#dropzone').addClass('dragover')
     console.log 'dragenter'
 
   $('#dropzone').on 'dragleave,dragend', () ->
     console.log('dragleave,dragend')
     return false
+
+  $('#file-select-trigger').on 'click', (e) ->
+    console.log('file-select-trigger')
+    input = $('#file-select-input')
+    input.click()
+    handle_files(input[0].files)
+    console.log input[0].files
+    e.preventDefault()
