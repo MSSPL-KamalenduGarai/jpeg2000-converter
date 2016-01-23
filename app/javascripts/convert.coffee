@@ -54,9 +54,14 @@ convert_image = (file_row, async_callback) ->
   jp2_file = pather.join(iiif_conversion_dir, basename + '.jp2')
   console.log jp2_file
   # convert to TIFF
-  $(file_row).find('.fa-spinner').show()
 
+  fr = $(file_row)
   async.series([
+    (callback) ->
+      fr.find('.fa-spinner').show()
+      fr.css('background-color', 'yellow')
+      $('body').animate({scrollTop: fr.offset().top, 100})
+      callback()
     (callback) ->
       convert_to_tiff(path, tif_tmp, callback)
     (callback) ->
@@ -64,8 +69,9 @@ convert_image = (file_row, async_callback) ->
     (callback) ->
       kdu_compress(tif_tmp_rgba, jp2_file, callback)
     (callback) ->
-      $(file_row).find('.fa-spinner').hide()
-      $(file_row).find('.output-jp2').append(jp2_file)
+      fr.find('.fa-spinner').hide()
+      fr.find('.output-jp2').append(jp2_file)
+      fr.css('background-color', 'white')
       update_completed_number()
       console.log "original file processed: #{path}"
       callback()
@@ -82,11 +88,12 @@ $(document).ready ->
     # TODO: store files somewhere and then process from there instead of
     # from looking at the file page
     async.eachSeries(
-      $('.file-row')
+      $('.file-row') # take each .file-row as file_row
       (file_row, callback) ->
         convert_image(file_row, callback)
       # once they are all done this callback gets triggered
       (err) ->
+        $('body').animate({scrollTop: 0})
         $("#convert-overall-spinner").hide()
         $("#all-done-checkmark").show()
     )
