@@ -37,6 +37,10 @@ Builds the app for OS X, Linux, and Windows, using [electron-packager](https://g
 - Add settings to allow changing the directory that the files get saved in.
 - Create a video.
 
+## Author
+
+Jason Ronallo
+
 ## License
 
-MIT © [<%= name %>](<%= website %>)
+MIT © North Carolina State University
