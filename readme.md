@@ -2,7 +2,7 @@
 
 > A GUI for creating JPEG2000 images suitable for a IIIF images
 
-Written using Electron.
+Written using Electron. Proof of concept.
 
 ## Dev
 
@@ -33,6 +33,7 @@ Builds the app for OS X, Linux, and Windows, using [electron-packager](https://g
 - Add button to start over
 - Animate or highlight "all done" when images are finished processing
 - Add settings to allow changing the directory that the files get saved in.
+- Create a video.
 
 ## License
 
