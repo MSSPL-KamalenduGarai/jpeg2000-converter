@@ -7,7 +7,7 @@ onClosed = ->
 createMainWindow = ->
   win = new (electron.BrowserWindow)(
     width: 600
-    height: 300)
+    height: 900)
   # win.loadURL(`file://${__dirname}/index.html`);
   win.loadURL("file://#{__dirname}/app/views/index.html")
   win.on 'closed', onClosed
@@ -30,6 +30,18 @@ require('electron-debug')({showDevTools: true})
 
 # prevent window being garbage collected
 mainWindow = undefined
+
+ipc_main = require('electron').ipcMain
+ipc_main.on('open-image', (event, arg) ->
+  image_window = new (electron.BrowserWindow)(
+    # width: 600
+    # height: 300,
+    show: false)
+  image_window.on 'closed', ->
+    win = null
+  image_window.loadURL(arg)
+  image_window.show()
+)
 
 app.on 'window-all-closed', ->
   if process.platform != 'darwin'

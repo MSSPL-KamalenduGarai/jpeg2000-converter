@@ -93,6 +93,7 @@ $(document).ready ->
         convert_image(file_row, callback)
       # once they are all done this callback gets triggered
       (err) ->
+        new Notification("Image processing done!")
         $('body').animate({scrollTop: 0})
         $("#convert-overall-spinner").hide()
         $("#all-done-checkmark").show()
