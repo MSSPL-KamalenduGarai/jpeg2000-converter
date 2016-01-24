@@ -1,6 +1,8 @@
-# app
+# JPEG2000 Converstion GUI
 
-> My superb app
+> A GUI for creating JPEG2000 images suitable for a IIIF images
+
+Written using Electron.
 
 ## Dev
 

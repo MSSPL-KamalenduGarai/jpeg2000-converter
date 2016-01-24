@@ -14,6 +14,11 @@ $(document).ready ->
     minZoomLevel:       1
     defaultZoomLevel:   1
     sequenceMode:       true
+    # Is this necessary or correct to add these tiles?
+    tiles: [
+      scaleFactors: [1, 2, 4, 8, 16, 32],
+      width: 1024
+    ]
     tileSources:   [  ]
 
   osd_config['tileSources']

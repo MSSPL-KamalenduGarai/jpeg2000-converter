@@ -12,13 +12,13 @@ class IIIFInfo
     parsexml kdu_info_result, (err, result) ->
       # console.log util.inspect result, false, null
       info = result
-    console.log kdu_info_result.toString()
+    # console.log kdu_info_result.toString()
     info
 
   info: ->
     info = @info_start()
     kinfo = @kdu_info()
-    console.log util.inspect info
+    # console.log util.inspect info
     jpc = kinfo.JP2_family_file.jp2c[0]
     codestream = jpc.codestream[0]
     info['height'] = parseInt codestream.height[0]

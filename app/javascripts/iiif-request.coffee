@@ -21,9 +21,9 @@ class IIIFRequest
     region = request_options.region
     jp2_file = @image_path
     temp_bmp = tempfile('.bmp')
-    top = region.top/@image_info.width
+    top = region.top/@image_info.height
     left = region.left/@image_info.width
-    height = region.height/@image_info.width
+    height = region.height/@image_info.height
     width = region.width/@image_info.width
 
     kdu_expand_cmd = "kdu_expand

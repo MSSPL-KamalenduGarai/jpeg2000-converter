@@ -2,6 +2,7 @@
 
 class IIIFRequestParams
   constructor: (@url, @image_info) ->
+    console.log @url
     @url_parts = @url.split('/')
     @id = @url_parts[1]
     region = @url_parts[2]
