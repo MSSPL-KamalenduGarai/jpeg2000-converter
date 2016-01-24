@@ -3,7 +3,7 @@ ipc_renderer = require('electron').ipcRenderer
 pather = require('path')
 
 # TODO: do not launch this automatically
-ipc_renderer.send('open-jp2', 'hs-2006-01-a-hires_tif')
+ipc_renderer.send('open-jp2', 'hs-2006-01-a-full_tif')
 
 $(document).ready ->
   $('body').on 'click', '.path-to-file,.image-of-file', (e) ->

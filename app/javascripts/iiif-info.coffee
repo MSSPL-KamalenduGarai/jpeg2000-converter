@@ -6,12 +6,13 @@ class IIIFInfo
   constructor: (@image_path, @id) ->
 
   kdu_info: ->
-    kdu_info_cmd = "kdu_jp2info -siz -i #{@image_path}"
+    kdu_info_cmd = "kdu_jp2info -siz -boxes 1 -com -i #{@image_path}"
     info = null
     kdu_info_result = child_process.execSync(kdu_info_cmd)
     parsexml kdu_info_result, (err, result) ->
       # console.log util.inspect result, false, null
       info = result
+    console.log kdu_info_result.toString()
     info
 
   info: ->
