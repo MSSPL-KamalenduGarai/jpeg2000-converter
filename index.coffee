@@ -67,7 +67,7 @@ app.on 'ready', ->
   # create the output directory if it doesn't exist already
   mainWindow.iiif_conversion_dir = iiif_conversion_dir
   fs.stat(iiif_conversion_dir, (err, stats) ->
-    console.log [err, stats]
+    # console.log [err, stats]
     if err
       fs.mkdir iiif_conversion_dir
   )
@@ -87,22 +87,22 @@ _ = require('lodash')
 koa_app.use (next) ->
   url = @.request.url
 
-  console.log "request url: #{url}"
+  # console.log "request url: #{url}"
   if _.includes(url, 'info.json')
     url_parts = url.split('/')
     id = url_parts[url_parts.length - 2]
-    console.log id
+    # console.log id
     @.body = extract_image_data(id)
   else
-    console.log url
+    # console.log url
     url_parts = url.split('/')
-    console.log url_parts
+    # console.log url_parts
     id = url_parts[1]
     region = url_parts[2]
     if region == 'full'
-      [top, left, width, height] = [0.0, 0.0, 1.0, 1.0]
+      [left, top, width, height] = [0, 0, 6000, 6000]
     else
-      [top, left, width, height] = region.split(',')
+      [left, top, width, height] = region.split(',')
 
     size = url_parts[3]
     rotation = url_parts[4]
@@ -140,12 +140,11 @@ create_jpg = (request_options) ->
   left = region.left/6000.0
   height = region.height/6000.0
   width = region.width/6000.0
-  console.log [top, left, height, width]
+  # console.log [top, left, height, width]
   kdu_expand_cmd = "kdu_expand
     -i #{jp2_file}
     -o #{temp_bmp}
-    -region '{#{top},#{left}},{#{height},#{width}}'
-    "
+    -region '{#{top},#{left}},{#{height},#{width}}'"
   console.log kdu_expand_cmd
   kdu_expand_result = child_process.execSync(kdu_expand_cmd)
   temp_jpg = tempfile('.jpg')
@@ -169,14 +168,14 @@ extract_image_data = (id) ->
     #   "width": 1024
     # ]
   info = kdu_info(id)
-  console.log "INFO"
+  # console.log "INFO"
   console.log util.inspect info
   jpc = info.JP2_family_file.jp2c[0]
   codestream = jpc.codestream[0]
-  console.log util.inspect jpc, depth: null
+  # console.log util.inspect jpc, depth: null
   info_start['height'] = parseInt codestream.height[0]
   info_start['width'] = parseInt codestream.width[0]
-  console.log util.inspect info_start
+  # console.log util.inspect info_start
   info_start
 
 kdu_info = (id) ->
@@ -185,7 +184,7 @@ kdu_info = (id) ->
   info = null
   kdu_info_result = child_process.execSync(kdu_info_cmd)
   parsexml kdu_info_result, (err, result) ->
-    console.log util.inspect result, false, null
+    # console.log util.inspect result, false, null
     info = result
   info
 
