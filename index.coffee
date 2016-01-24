@@ -38,9 +38,20 @@ ipc_main.on('open-image', (event, arg) ->
     # height: 300,
     show: false)
   image_window.on 'closed', ->
-    win = null
+    jp2_window = null
   image_window.loadURL(arg)
   image_window.show()
+)
+
+ipc_main.on('open-jp2', (event, arg) ->
+  jp2_window = new (electron.BrowserWindow)(
+    show: false
+  )
+  jp2_window.on 'closed', ->
+    jp2_window = null
+  jp2_window
+    .loadURL("file://#{__dirname}/app/views/openseadragon.html?id=#{arg}")
+  jp2_window.show()
 )
 
 app.on 'window-all-closed', ->
