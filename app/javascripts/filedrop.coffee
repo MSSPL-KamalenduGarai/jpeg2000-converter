@@ -2,10 +2,15 @@ $ = require('jquery')
 hbs_render = require("#{__dirname}/../javascripts/hbs_render")
 sharp = require('sharp')
 async = require('async')
+modal = null
+
+# ipc_renderer = require('electron').ipcRenderer
 
 handle_files = (files) ->
   image_number = $('.image_number').html()
   index = if image_number != '' then parseInt(image_number) else 0
+
+  # ipc_renderer.send('files-being-added-dialog', files.length)
 
   async.each(
     files
@@ -27,9 +32,15 @@ handle_files = (files) ->
             async_callback()
       )
     -> #done
+      modal.close()
       # Note we don't need to ask permission!
       new Notification("#{index} image(s) added and ready to be processed!")
   )
+
+open_files_added_modal = (number) ->
+  $("#files-added-modal-number").html(number)
+  modal = new Foundation.Reveal($('#files-added-modal'))
+  modal.open()
 
 $(document).ready ->
   $(document).on 'dragover,drop', (e) ->
@@ -41,30 +52,32 @@ $(document).ready ->
     e.preventDefault()
     console.log 'dropped'
     files = e.originalEvent.dataTransfer.files
+    open_files_added_modal(files.length)
     handle_files(files)
     $('#dropzone').removeClass('dragover')
 
   $('#dropzone').on 'dragover', (e) ->
     e.preventDefault()
-    console.log 'dragover'
+    # console.log 'dragover'
     return false
 
   $('#dropzone').on 'dragenter', (e) ->
     e.preventDefault()
     $('#dropzone').addClass('dragover')
-    console.log 'dragenter'
+    # console.log 'dragenter'
 
   $('#dropzone').on 'dragleave,dragend', () ->
-    console.log('dragleave,dragend')
+    # console.log('dragleave,dragend')
     return false
 
   $('#file-select-trigger').on 'click', (e) ->
     e.preventDefault()
-    console.log('file-select-trigger')
+    # console.log('file-select-trigger')
     input = $('#file-select-input')
     input.click()
-    console.log input[0].files
 
   $('#file-select-input').on 'change', (e) ->
     input = $('#file-select-input')
-    handle_files(input[0].files)
+    files = input[0].files
+    open_files_added_modal(files.length)
+    handle_files(files)

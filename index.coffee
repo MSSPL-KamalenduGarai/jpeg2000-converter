@@ -6,15 +6,15 @@ onClosed = ->
 
 createMainWindow = ->
   win = new (electron.BrowserWindow)(
-    width: 600
+    width: 800
     height: 900)
-  # win.loadURL(`file://${__dirname}/index.html`);
   win.loadURL("file://#{__dirname}/app/views/index.html")
   win.on 'closed', onClosed
   win
 
 'use strict'
 electron = require('electron')
+dialog = electron.dialog
 app = electron.app
 
 fs = require('fs')
@@ -34,8 +34,8 @@ mainWindow = undefined
 ipc_main = require('electron').ipcMain
 ipc_main.on('open-image', (event, arg) ->
   image_window = new (electron.BrowserWindow)(
-    # width: 600
-    # height: 300,
+    width: 1000
+    height: 1000,
     show: false)
   image_window.on 'closed', ->
     jp2_window = null
@@ -45,7 +45,9 @@ ipc_main.on('open-image', (event, arg) ->
 
 ipc_main.on('open-jp2', (event, arg) ->
   jp2_window = new (electron.BrowserWindow)(
-    show: false
+    show: false,
+    width: 1000,
+    height: 1000
   )
   jp2_window.on 'closed', ->
     jp2_window = null
@@ -53,6 +55,15 @@ ipc_main.on('open-jp2', (event, arg) ->
     .loadURL("file://#{__dirname}/app/views/openseadragon.html?id=#{arg}")
   jp2_window.show()
 )
+
+# ipc_main.on('files-being-added-dialog', (event, arg) ->
+#   dialog.showMessageBox(mainWindow, {
+#     type: 'info',
+#     message: "#{arg} files are being added...",
+#     buttons: ['OK']
+#     })
+#
+# )
 
 app.on 'window-all-closed', ->
   if process.platform != 'darwin'

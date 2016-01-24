@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../stylesheets/index.css" type="text/css">
     <link rel="stylesheet" href="../stylesheets/file-row.less" type="text/css">
     <!-- <script src="../javascripts/cmd.coffee"></script> -->
+    <script charset="utf-8">var jQuery = require('jquery')</script>
+    <script src="../../node_modules/foundation-sites/dist/foundation.js"></script>
     <script src="../javascripts/filedrop.coffee"></script>
     <script src="../javascripts/convert.coffee"></script>
     <script src="../javascripts/image-viewer.coffee"></script>
@@ -29,7 +31,7 @@
         </div>
         <div id="convert-progress" class="convert-progress">
           <span id="convert-overall-spinner" class=" convert-overall-spinner">
-            converting <span class="completed_number"></span> of
+            converted <span class="completed_number">0</span> of
             <span class="image_number"></span> images
             <i class="fa fa-spinner fa-pulse" ></i>
           </span>
@@ -39,6 +41,32 @@
         </div>
       </section>
       <div id="container" class="content-container"></div>
+
+      <div class="reveal" id="files-added-modal" data-reveal>
+        <h1><span id="files-added-modal-number"></span> files are being added...</h1>
+        <p>
+          Sometimes it takes a while to create the thumbnails for the images.
+          This image creation shold probably be done async!
+        </p>
+        <p>This dialog will automatically close when they're all added.</p>
+        <p>You'll also get a desktop notification.</p>
+        <!-- <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+
+      <div class="reveal" id="jp2s-created-modal" data-reveal>
+        <h1>All JPEG2000s Created</h1>
+        <p>
+          Click on the link to the JP2 file and see the image in an
+          openseadragon viewer.
+        </p>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
       <!-- <footer></footer> -->
       <!-- <a href="#" id="ls">ls</a>
       <a href="#" id="ffprobe">ffprobe</a>
