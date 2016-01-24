@@ -33,15 +33,17 @@ class IIIFRequestParams
 
   # TODO: don't fake this!
   calculate_reduction: () ->
-    console.log @options
-    tile_size = 1024
-    # switch
-    #   when size.width == tile_size then 2
-    #   else 3
-    reduction = (@options.region.width / @options.size.width) - 1
-    if reduction > 6
-      6
-    else
-      reduction
+    reduction_factor = (@options.region.width / @options.size.width) - 1
+    # since we know we have 6 quality layers and all tiles are
+    # square we can fake this to be good enough for a proof
+    # of concept.
+    switch
+      when reduction_factor >= 12 then 6
+      when reduction_factor >= 10 then 5
+      when reduction_factor >= 8 then 4
+      when reduction_factor >= 6 then 3
+      when reduction_factor >= 4 then 2
+      when reduction_factor >= 2 then 1
+      else 0
 
 module.exports = IIIFRequestParams

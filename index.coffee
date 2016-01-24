@@ -88,9 +88,7 @@ image_path = (id) ->
 
 koa_app.use (next) ->
   url = @.request.url
-  # console.log "request url: #{url}"
   if _.includes(url, 'info.json')
-    # console.log id
     url_parts = url.split('/')
     id = url_parts[url_parts.length - 2]
     iiif_info = new IIIFInfo(image_path(id), id)

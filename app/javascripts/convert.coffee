@@ -13,7 +13,6 @@ convert_to_tiff = (path, tif_tmp, async_callback) ->
   convert_cmd = "convert #{path} #{tif_tmp}"
   child_process.exec(convert_cmd,
     (stdout, stderr) ->
-      console.log [stdout, stderr]
       console.log "tiff: #{tif_tmp}"
       async_callback()
   )
@@ -28,7 +27,6 @@ tiff2rgba = (tif_tmp, tif_tmp_rgba, async_callback) ->
 kdu_compress = (tif, output_file, async_callback) ->
   cmd = kdu_command(tif, output_file)
   child_process.exec(cmd, (stdout2, stderr2) ->
-    console.log [stdout2, stderr2]
     console.log "jp2: #{output_file}"
     async_callback()
   )
@@ -39,7 +37,6 @@ update_completed_number = () ->
     if !!completed_number_text
     then parseInt(completed_number_text) + 1
     else 1
-  console.log completed_number
   $('.completed_number').html(completed_number)
   console.log "completed_number: #{completed_number}"
 
@@ -50,7 +47,6 @@ convert_image = (file_row, async_callback) ->
   tif_tmp_rgba = tempfile('.tiff')
   extname = pather.extname(path)
   basename = pather.basename(path, extname)
-  console.log iiif_conversion_dir
   jp2_file = pather.join(iiif_conversion_dir, basename + '.jp2')
   console.log jp2_file
   # convert to TIFF

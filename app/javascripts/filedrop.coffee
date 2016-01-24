@@ -4,19 +4,27 @@ sharp = require('sharp')
 async = require('async')
 
 handle_files = (files) ->
-  index = 0
+  image_number = $('.image_number').html()
+  index = if image_number != '' then parseInt(image_number) else 0
+
   async.each(
     files
     (file, async_callback) ->
-      sharp(file.path).resize(null, 100).toBuffer().then(
-        (output) ->
-          image = output.toString('base64')
-          line = hbs_render('file_row', {path: file.path,image: image })
-          $('#container').prepend(line)
-          index++
-          $('.image_number').html(index)
-          $('#commands').show()
-          async_callback()
+      console.log file
+      sharp(file.path)
+        .limitInputPixels(2147483647)
+        .resize(null, 100)
+        .toFormat('png')
+        .toBuffer().then(
+          (output) ->
+            image = output.toString('base64')
+            line = hbs_render('file_row',
+              {path: file.path, image: image })
+            $('#container').prepend(line)
+            index++
+            $('.image_number').html(index)
+            $('#commands').show()
+            async_callback()
       )
     -> #done
       # Note we don't need to ask permission!
