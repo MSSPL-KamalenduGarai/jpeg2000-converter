@@ -26,6 +26,8 @@ Builds the app for OS X, Linux, and Windows, using [electron-packager](https://g
 
 ## TODO
 - Add an icon
+- Hide the window menus
+- Add size of original image to each line
 - Add thumbnail images async
 - When processing an individual image give a status update on where through the process it is instead of just giving a spinner.
 - Change background color of currently processed image
