@@ -84,6 +84,7 @@ convert_image = (file_row, async_callback) ->
 
 $(document).ready ->
   $("#convert-jpeg2000-command").on 'click', () ->
+    $('#dropzone').hide()
     $('#convert-jpeg2000-command').hide()
     $("#convert-overall-spinner").show()
     # TODO: store files somewhere and then process from there instead of
