@@ -80,6 +80,7 @@ convert_image = (file_row, async_callback) ->
       fr.removeClass('working-line')
       update_completed_number()
       console.log "original file processed: #{path}"
+      $('#restart').show()
       callback()
       async_callback()
   ],

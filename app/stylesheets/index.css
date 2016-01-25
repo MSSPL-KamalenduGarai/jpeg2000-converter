@@ -37,8 +37,14 @@ h1 {
 .commands,
 .convert-overall-spinner,
 .all-done-checkmark,
-.output-jp2-container {
+.output-jp2-container,
+.restart {
   display: none;
+}
+
+.commands {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 /* This is a line that is currently being worked on */

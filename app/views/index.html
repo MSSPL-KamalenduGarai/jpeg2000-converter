@@ -26,18 +26,24 @@
           <div class="dragdroptext" id="file-select-trigger"><a href="#">Select files</a></div>
           <input type="file" id="file-select-input" class="file-select-input" multiple accept="image/*" style="display:none">
         </div>
-        <div id="commands" class="commands">
-          <a href="#" class='convert-jpeg2000-command button' id='convert-jpeg2000-command'>convert all <span class="image_number"></span> images to JPEG2000</a>
+        <div id="commands" class="commands row clearfix">
+          <div class="column">
+            <a href="#" class='convert-jpeg2000-command button' id='convert-jpeg2000-command'>convert all <span class="image_number"></span> images to JPEG2000</a>
+
+            <a href="#" id="restart" class="restart button">Restart <i class="fa fa-refresh"></i></a>
+          </div>
         </div>
-        <div id="convert-progress" class="convert-progress">
-          <span id="convert-overall-spinner" class=" convert-overall-spinner">
-            converted <span class="completed_number">0</span> of
-            <span class="image_number"></span> images
-            <i class="fa fa-spinner fa-pulse" ></i>
-          </span>
-          <span class="all-done-checkmark" id="all-done-checkmark">
-            <i class="fa fa-check"></i> all done
-          </span>
+        <div id="convert-progress" class="convert-progress row">
+          <div class="column">
+            <span id="convert-overall-spinner" class=" convert-overall-spinner">
+              converted <span class="completed_number">0</span> of
+              <span class="image_number"></span> images
+              <i class="fa fa-spinner fa-pulse" ></i>
+            </span>
+            <span class="all-done-checkmark" id="all-done-checkmark">
+              <i class="fa fa-check"></i> all done
+            </span>
+          </div>
         </div>
       </section>
       <div id="container" class="content-container"></div>

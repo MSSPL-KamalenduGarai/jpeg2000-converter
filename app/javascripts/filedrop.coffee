@@ -4,6 +4,7 @@ sharp = require('sharp')
 async = require('async')
 modal = null
 prettysize = require('prettysize')
+electron = require('electron')
 
 # ipc_renderer = require('electron').ipcRenderer
 
@@ -82,3 +83,7 @@ $(document).ready ->
     files = input[0].files
     open_files_added_modal(files.length)
     handle_files(files)
+
+  $('#restart').on 'click', (e) ->
+    electron.remote.getCurrentWindow().reload()
+    e.preventDefault()
