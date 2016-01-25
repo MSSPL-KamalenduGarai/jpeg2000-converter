@@ -35,6 +35,7 @@ Builds the app for OS X, Linux, and Windows, using [electron-packager](https://g
 - Add button to start over
 - Animate or highlight "all done" when images are finished processing
 - Add settings to allow changing the directory that the files get saved in.
+- Clean up temp files.
 - Create a video.
 
 ## Author
