@@ -9,6 +9,10 @@ body {
   color: black;
 }
 
+h1 {
+  text-align: center;
+}
+
 .dropzone {
   box-sizing: border-box;
   border:2px dashed #0B85A1;

@@ -9,6 +9,7 @@ createMainWindow = ->
     width: 800
     height: 900
     icon: './app/images/image-image.png')
+  win.setMenu(null)
   win.loadURL("file://#{__dirname}/app/views/index.html")
   win.on 'closed', onClosed
   win
@@ -39,6 +40,7 @@ ipc_main.on('open-image', (event, arg) ->
     height: 1000
     show: false
     icon: './app/images/image-image.png')
+  image_window.setMenu(null)
   image_window.on 'closed', ->
     jp2_window = null
   image_window.loadURL(arg)
