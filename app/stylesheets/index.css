@@ -33,19 +33,11 @@ h1 {
   text-align: center;
 }
 
-.file-select-input {
-  display: none;
-}
-
-.commands {
-  display:none;
-}
-
-.convert-overall-spinner {
-  display: none;
-}
-
-.all-done-checkmark {
+.file-select-input,
+.commands,
+.convert-overall-spinner,
+.all-done-checkmark,
+.output-jp2-container {
   display: none;
 }
 

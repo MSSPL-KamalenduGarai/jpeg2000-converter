@@ -4,6 +4,8 @@ child_process = require('child_process')
 async = require('async')
 pather = require('path')
 electron = require('electron')
+fs = require('fs')
+prettysize = require('prettysize')
 iiif_conversion_dir =
   electron.remote.getCurrentWindow().iiif_conversion_dir
 
@@ -71,7 +73,10 @@ convert_image = (file_row, async_callback) ->
     (callback) ->
       fr.find('.status').html('<i class="fa fa-check"></i> completed')
       fr.find('.fa-spinner').hide()
+      fr.find('.output-jp2-container').show()
       fr.find('.output-jp2').append(jp2_file)
+      jp2_filesize = fs.statSync(jp2_file)["size"]
+      fr.find('.jp2-filesize').html(prettysize(jp2_filesize))
       fr.removeClass('working-line')
       update_completed_number()
       console.log "original file processed: #{path}"
