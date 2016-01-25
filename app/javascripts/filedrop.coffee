@@ -3,6 +3,7 @@ hbs_render = require("#{__dirname}/../javascripts/hbs_render")
 sharp = require('sharp')
 async = require('async')
 modal = null
+prettysize = require('prettysize')
 
 # ipc_renderer = require('electron').ipcRenderer
 
@@ -24,7 +25,7 @@ handle_files = (files) ->
           (output) ->
             image = output.toString('base64')
             line = hbs_render('file_row',
-              {path: file.path, image: image })
+              {path: file.path, image: image, filesize: prettysize(file.size) })
             $('#container').prepend(line)
             index++
             $('.image_number').html(index)
