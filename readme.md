@@ -25,18 +25,15 @@ $ npm run build
 Builds the app for OS X, Linux, and Windows, using [electron-packager](https://github.com/maxogden/electron-packager).
 
 ## TODO
-- Add an icon
-- Hide the window menus
-- Add size of original image to each line
-- Add thumbnail images async
 - When processing an individual image give a status update on where through the process it is instead of just giving a spinner.
-- Change background color of currently processed image
+- Add size of original image to each line
 - When images start to process hide the file drop target
+- Add thumbnail images async
 - Add button to start over
 - Animate or highlight "all done" when images are finished processing
 - Add settings to allow changing the directory that the files get saved in.
 - Clean up temp files.
-- Create a video.
+- Create a video showing how this works
 
 ## Author
 

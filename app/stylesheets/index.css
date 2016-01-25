@@ -49,6 +49,11 @@ h1 {
   display: none;
 }
 
+/* This is a line that is currently being worked on */
+.working-line {
+  background-color: hsl(250, 100%, 83%);
+}
+
 /*header {
   position: absolute;
   width: 500px;

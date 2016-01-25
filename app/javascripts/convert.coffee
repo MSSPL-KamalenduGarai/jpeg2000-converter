@@ -55,7 +55,7 @@ convert_image = (file_row, async_callback) ->
   async.series([
     (callback) ->
       fr.find('.fa-spinner').show()
-      fr.css('background-color', 'yellow')
+      fr.addClass('working-line')
       $('body').animate({scrollTop: fr.offset().top, 100})
       callback()
     (callback) ->
@@ -67,7 +67,7 @@ convert_image = (file_row, async_callback) ->
     (callback) ->
       fr.find('.fa-spinner').hide()
       fr.find('.output-jp2').append(jp2_file)
-      fr.css('background-color', 'white')
+      fr.removeClass('working-line')
       update_completed_number()
       console.log "original file processed: #{path}"
       callback()
