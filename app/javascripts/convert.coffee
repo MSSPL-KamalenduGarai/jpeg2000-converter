@@ -54,17 +54,22 @@ convert_image = (file_row, async_callback) ->
   fr = $(file_row)
   async.series([
     (callback) ->
+      fr.find('.status').html('beginning')
       fr.find('.fa-spinner').show()
       fr.addClass('working-line')
       $('body').animate({scrollTop: fr.offset().top, 100})
       callback()
     (callback) ->
+      fr.find('.status').html('converting to tiff')
       convert_to_tiff(path, tif_tmp, callback)
     (callback) ->
+      fr.find('.status').html('ensuring rgba tiff')
       tiff2rgba(tif_tmp, tif_tmp_rgba, callback)
     (callback) ->
+      fr.find('.status').html('creating JP2')
       kdu_compress(tif_tmp_rgba, jp2_file, callback)
     (callback) ->
+      fr.find('.status').html('<i class="fa fa-check"></i> completed')
       fr.find('.fa-spinner').hide()
       fr.find('.output-jp2').append(jp2_file)
       fr.removeClass('working-line')
