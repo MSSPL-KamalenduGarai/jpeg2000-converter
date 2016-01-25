@@ -7,7 +7,8 @@ onClosed = ->
 createMainWindow = ->
   win = new (electron.BrowserWindow)(
     width: 800
-    height: 900)
+    height: 900
+    icon: './app/images/image-image.png')
   win.loadURL("file://#{__dirname}/app/views/index.html")
   win.on 'closed', onClosed
   win
@@ -35,8 +36,9 @@ ipc_main = require('electron').ipcMain
 ipc_main.on('open-image', (event, arg) ->
   image_window = new (electron.BrowserWindow)(
     width: 1000
-    height: 1000,
-    show: false)
+    height: 1000
+    show: false
+    icon: './app/images/image-image.png')
   image_window.on 'closed', ->
     jp2_window = null
   image_window.loadURL(arg)
