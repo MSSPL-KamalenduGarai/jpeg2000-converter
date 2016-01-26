@@ -30,6 +30,10 @@ Builds the app for OS X, Linux, and Windows, using [electron-packager](https://g
 - Clean up temp files.
 - Create a video showing how this works
 - Animate or highlight "all done" when images are finished processing
+- after processing is complete for a file do some checks to make sure the JP2 has been created correctly. Size, `file`, what else?
+- Add way to browse any of the images that are currently in the processing output directory.
+- Allow tif images to be opened up in default external viewer
+- Add "JP2" icon as an easy target for launching the openseadragon viewer
 
 ## Author
 
