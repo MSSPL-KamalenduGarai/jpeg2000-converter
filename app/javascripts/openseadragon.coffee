@@ -22,7 +22,7 @@ $(document).ready ->
     tileSources:   [  ]
 
   osd_config['tileSources']
-    .push("http://localhost:3000/#{image_id}/info.json")
+    .push("http://localhost:3000/#{encodeURIComponent image_id}/info.json")
 
   console.log osd_config
   viewer = OpenSeadragon osd_config

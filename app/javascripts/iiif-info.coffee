@@ -3,7 +3,7 @@ child_process = require 'child_process'
 util = require('util')
 
 class IIIFInfo
-  constructor: (@image_path, @id) ->
+  constructor: (@image_path) ->
 
   kdu_info: ->
     kdu_info_cmd = "kdu_jp2info -siz -boxes 1 -com -i #{@image_path}"
@@ -28,7 +28,7 @@ class IIIFInfo
   info_start: ->
     '@context': "http://iiif.io/api/image/2/context.json"
     'protocol': "http://iiif.io/api/image"
-    '@id': "http://localhost:3000/#{@id}"
+    '@id': "http://localhost:3000/#{encodeURIComponent @image_path}"
     'profile': [
       "http://iiif.io/api/image/2/level2.json",
       {'qualities': ['default']}

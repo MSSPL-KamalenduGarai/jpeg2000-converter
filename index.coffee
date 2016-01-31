@@ -100,8 +100,9 @@ ipc_main.on('open-jp2', (event, arg) ->
   jp2_window.setMenu(null)
   jp2_window.on 'closed', ->
     jp2_window = null
-  jp2_window
-    .loadURL("file://#{__dirname}/app/views/openseadragon.html?id=#{arg}")
+  encoded_image_path = encodeURIComponent arg
+  url = "file://#{__dirname}/app/views/openseadragon.html?id=#{encoded_image_path}"
+  jp2_window.loadURL(url)
   jp2_window.show()
 )
 
@@ -143,21 +144,22 @@ koa = require('koa')
 koa_app = koa()
 _ = require('lodash')
 
-image_path = (id) ->
-  "#{settings.get('output_dir')}/#{id}.jp2"
+# image_path = (id) ->
+#   "#{settings.get('output_dir')}/#{id}.jp2"
 
 koa_app.use (next) ->
   url = @.request.url
   if _.includes(url, 'info.json')
     url_parts = url.split('/')
     id = url_parts[url_parts.length - 2]
-    iiif_info = new IIIFInfo(image_path(id), id)
+    iiif_info = new IIIFInfo(decodeURIComponent id)
     info = iiif_info.info()
     @.body = info
   else
     url_parts = @url.split('/')
     id = url_parts[1]
-    iiif_request = new IIIFRequest(url, image_path(id))
+    path = decodeURIComponent id
+    iiif_request = new IIIFRequest(url, path)
     image = iiif_request.response_image()
     @.response.type = 'image/jpeg'
     @.response.body = image
