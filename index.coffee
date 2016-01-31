@@ -23,7 +23,6 @@ onClosed = ->
 checkWhich = ->
   which kdu_compress, (err, path) ->
     if err #open a window with instructions on installing kakadu binaries
-      console.log 'which err'
       installWindow = createInstallWindow()
     else
       kakaduInstalled = true
