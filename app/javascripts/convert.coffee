@@ -6,8 +6,7 @@ pather = require('path')
 electron = require('electron')
 fs = require('fs')
 prettysize = require('prettysize')
-iiif_conversion_dir =
-  electron.remote.getCurrentWindow().iiif_conversion_dir
+settings = electron.remote.getCurrentWindow().settings
 
 # For some reason sharp does not do a good job of converting some images
 # to a TIFF that kdu_compress will like so we use imagemagick.
@@ -49,7 +48,8 @@ convert_image = (file_row, async_callback) ->
   tif_tmp_rgba = tempfile('.tiff')
   extname = pather.extname(path)
   basename = pather.basename(path, extname)
-  jp2_file = pather.join(iiif_conversion_dir, basename + '.jp2')
+  output_dir = settings.get('output_dir')
+  jp2_file = pather.join(output_dir, basename + '.jp2')
   console.log jp2_file
   # convert to TIFF
 

@@ -2,6 +2,7 @@
 # prevent window being garbage collected
 mainWindow = undefined
 installWindow = undefined
+settingsWindow = undefined
 kakaduInstalled = false
 electron = require('electron')
 dialog = electron.dialog
@@ -10,9 +11,12 @@ which = require('which')
 kdu_compress = 'kdu_compress'
 
 fs = require('fs')
+Configstore = require('configstore')
+package_json = require('./package.json')
 expand_home_dir = require('expand-home-dir')
 iiif_conversion_dir = expand_home_dir('~/iiif_conversion')
 
+settings = new Configstore(package_json.name)
 
 onClosed = ->
   # dereference the window
@@ -30,7 +34,6 @@ checkWhich = ->
       installWindow = null
       mainWindow = createMainWindow()
 
-
 createMainWindow = ->
   if !mainWindow?
     win = new (electron.BrowserWindow)(
@@ -40,7 +43,8 @@ createMainWindow = ->
     win.setMenu(null)
     win.loadURL("file://#{__dirname}/app/views/index.html")
     win.on 'closed', onClosed
-    win.iiif_conversion_dir = iiif_conversion_dir
+    # win.output_dir = settings.get('output_dir')
+    win.settings = settings
     win
 
 createInstallWindow = ->
@@ -54,6 +58,17 @@ createInstallWindow = ->
   win.on 'closed', checkWhich
   win
 
+openSettings = ->
+  win = new (electron.BrowserWindow)(
+    width: 400
+    height: 200
+    # frame: false
+    icon: './app/images/image-image.png')
+  win.setMenu(null)
+  win.loadURL("file://#{__dirname}/app/views/settings.html")
+  win.settings = settings
+  # win.on 'closed', something
+  win
 
 # report crashes to the Electron project
 require('crash-reporter').start()
@@ -93,6 +108,12 @@ ipc_main.on('open-jp2', (event, arg) ->
 ipc_main.on 'retry-launch', (event, arg) ->
   checkWhich()
 
+ipc_main.on 'open-settings', (event, arg) ->
+  openSettings()
+
+ipc_main.on 'open-mainwindow-if-not', (event, arg) ->
+  checkWhich()
+
 app.on 'window-all-closed', ->
   if process.platform != 'darwin'
     app.quit()
@@ -103,11 +124,14 @@ app.on 'activate', ->
 
 app.on 'ready', ->
   # create the output directory if it doesn't exist already
-  fs.stat iiif_conversion_dir, (err, stats) ->
-    # console.log [err, stats]
-    if err
-      fs.mkdir iiif_conversion_dir
-  checkWhich()
+  if !settings.get('output_dir')
+    openSettings()
+  else
+    fs.stat settings.get('output_dir'), (err, stats) ->
+      # console.log [err, stats]
+      if err
+        fs.mkdir settings.get('output_dir')
+    checkWhich()
 
 ###
 a koa application
@@ -119,7 +143,7 @@ koa_app = koa()
 _ = require('lodash')
 
 image_path = (id) ->
-  "#{iiif_conversion_dir}/#{id}.jp2"
+  "#{settings.get('output_dir')}/#{id}.jp2"
 
 koa_app.use (next) ->
   url = @.request.url
