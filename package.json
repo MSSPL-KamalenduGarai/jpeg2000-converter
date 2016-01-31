@@ -1,20 +1,21 @@
 {
   "name": "jpeg2000-conversion-gui",
-  "productName": "JPEG2000 Conversion GUI",
+  "productName": "jpeg2000-conversion-gui",
   "version": "0.0.1",
   "description": "Electron GUI to convert images to JPEG2000 images",
   "license": "MIT",
   "repository": "user/repo",
   "author": {
-    "name": "",
-    "email": "",
-    "url": ""
+    "name": "Jason Ronallo",
+    "email": "jronallo@gmail.com",
+    "url": "http://ronallo.com"
   },
   "electronVersion": "0.36.0",
   "scripts": {
     "test": "xo",
     "start": "electron .",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion"
+    "compile": "electron-compile --appDir . ./app",
+    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --all --version=$npm_package_electronVersion"
   },
   "keywords": [
     "electron-app",
