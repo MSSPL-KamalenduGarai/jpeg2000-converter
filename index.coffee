@@ -18,12 +18,6 @@ iiif_conversion_dir = expand_home_dir('~/iiif_conversion')
 
 settings = new Configstore(package_json.name)
 
-onClosed = ->
-  # dereference the window
-  # for multiple windows store them in an array
-  mainWindow = null
-  return
-
 checkWhich = ->
   which kdu_compress, (err, path) ->
     if err #open a window with instructions on installing kakadu binaries
@@ -42,7 +36,8 @@ createMainWindow = ->
       icon: './app/images/image-image.png')
     win.setMenu(null)
     win.loadURL("file://#{__dirname}/app/views/index.html")
-    win.on 'closed', onClosed
+    win.on 'closed', ->
+      win = null
     # win.output_dir = settings.get('output_dir')
     win.settings = settings
     win
@@ -67,7 +62,8 @@ openSettings = ->
   win.setMenu(null)
   win.loadURL("file://#{__dirname}/app/views/settings.html")
   win.settings = settings
-  # win.on 'closed', something
+  win.on 'closed', ->
+    settingsWindow = null
   win
 
 # report crashes to the Electron project
@@ -110,7 +106,7 @@ ipc_main.on 'retry-launch', (event, arg) ->
   checkWhich()
 
 ipc_main.on 'open-settings', (event, arg) ->
-  if !settingsWindow?
+  if not settingsWindow?
     settingsWindow = openSettings()
 
 ipc_main.on 'open-mainwindow-if-not', (event, arg) ->
