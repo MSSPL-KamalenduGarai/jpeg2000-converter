@@ -5,6 +5,7 @@ installWindow = undefined
 settingsWindow = undefined
 kakaduInstalled = false
 electron = require('electron')
+shell = electron.shell
 dialog = electron.dialog
 app = electron.app
 which = require('which')
@@ -74,16 +75,21 @@ require('electron-debug')({showDevTools: true})
 
 ipc_main = require('electron').ipcMain
 ipc_main.on('open-image', (event, arg) ->
-  image_window = new (electron.BrowserWindow)(
-    width: 1000
-    height: 1000
-    show: false
-    icon: './app/images/image-image.png')
-  image_window.setMenu(null)
-  image_window.on 'closed', ->
-    image_window = null
-  image_window.loadURL(arg)
-  image_window.show()
+  # If this is a tif then we can't open it in the browser window.
+  # If it is any other type of image we open it in our own window.
+  if _.includes(arg, 'tif')
+    shell.openExternal(arg)
+  else
+    image_window = new (electron.BrowserWindow)(
+      width: 1000
+      height: 1000
+      show: false
+      icon: './app/images/image-image.png')
+    image_window.setMenu(null)
+    image_window.on 'closed', ->
+      image_window = null
+    image_window.loadURL(arg)
+    image_window.show()
 )
 
 ipc_main.on('open-jp2', (event, arg) ->
