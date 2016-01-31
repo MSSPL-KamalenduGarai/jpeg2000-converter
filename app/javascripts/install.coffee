@@ -5,8 +5,7 @@ which = require('which')
 check_interval = undefined
 
 check_install = ->
-  console.log 'gets here'
-  which 'kdu_compres', (err, path) ->
+  which 'kdu_compress', (err, path) ->
     if path?
       $('#kdu_compress-polling').hide()
       $('#retry-launch-section').show()
