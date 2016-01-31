@@ -25,6 +25,7 @@ $ npm run build
 Builds the app for OS X, Linux, and Windows, using [electron-packager](https://github.com/maxogden/electron-packager).
 
 ## TODO
+- add notifications whether dependencies are installed and if not install them
 - Add thumbnail images async
 - Add settings to allow changing the directory that the files get saved in.
 - Clean up temp files.

@@ -33,6 +33,7 @@
     "prettysize": "0.0.3",
     "sharp": "^0.12.2",
     "tempfile": "^1.1.1",
+    "which": "^1.2.4",
     "xml2js": "^0.4.16"
   },
   "devDependencies": {
