@@ -15,6 +15,8 @@ class IIIFRequest
   response_image: () ->
     image_file = @create_jpg(@params.options)
     image = fs.readFileSync(image_file)
+    fs.unlink(image_file) # TODO: add caching
+    image
 
   create_jpg: (request_options) ->
     ro = request_options
@@ -36,6 +38,7 @@ class IIIFRequest
     temp_jpg = tempfile('.jpg')
     convert_cmd = "convert #{temp_bmp} -resize #{ro.size.width} #{temp_jpg}"
     convert_result = child_process.execSync(convert_cmd)
+    fs.unlinkSync(temp_bmp)
     temp_jpg
 
 module.exports = IIIFRequest

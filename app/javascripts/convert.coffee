@@ -22,13 +22,15 @@ tiff2rgba = (tif_tmp, tif_tmp_rgba, async_callback) ->
   child_process.exec("tiff2rgba -c none #{tif_tmp} #{tif_tmp_rgba}",
     (stdout, stderr) ->
       console.log "tiff2rgba: #{tif_tmp_rgba}"
+      fs.unlinkSync(tif_tmp)
       async_callback()
   )
 
-kdu_compress = (tif, output_file, async_callback) ->
-  cmd = kdu_command(tif, output_file)
+kdu_compress = (tif_tmp_rgba, output_file, async_callback) ->
+  cmd = kdu_command(tif_tmp_rgba, output_file)
   child_process.exec(cmd, (stdout2, stderr2) ->
     console.log "jp2: #{output_file}"
+    fs.unlinkSync(tif_tmp_rgba)
     async_callback()
   )
 
