@@ -109,7 +109,8 @@ ipc_main.on 'retry-launch', (event, arg) ->
   checkWhich()
 
 ipc_main.on 'open-settings', (event, arg) ->
-  openSettings()
+  if !settingsWindow?
+    settingsWindow = openSettings()
 
 ipc_main.on 'open-mainwindow-if-not', (event, arg) ->
   checkWhich()

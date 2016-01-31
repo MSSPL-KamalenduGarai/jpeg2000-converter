@@ -22,9 +22,6 @@
       <header>
         <h1>JPEG2000 Conversion GUI</h1>
       </header>
-      <div class="settings-container">
-        <a href="#" id="settings" class="settings"><i class="fa fa-gear"></i></a>
-      </div>
       <section class="main">
         <div class="dropzone" id="dropzone">
           <div class="dragdroptext">Drop your image files here</div>
@@ -52,6 +49,17 @@
           </div>
         </div>
       </section>
+
+      <div class="settings-container">
+        <a href="#" id="settings" class="settings"><i class="fa fa-gear"></i></a>
+      </div>
+
+      <div class="pan-zoom-container">
+        <a href="#" id="launch-pan-zoom" class="launch-pan-zoom"><i class="fa fa-search"></i></a>
+        <input type="file" id="pan-zoom-file-select-input" class="file-select-input" multiple accept="image/jp2" style="display:none">
+      </div>
+
+
       <div id="container" class="content-container"></div>
 
       <div class="reveal" id="files-added-modal" data-reveal>
