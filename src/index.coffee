@@ -74,7 +74,7 @@ require('crash-reporter').start()
 require('electron-debug')({showDevTools: true})
 
 ipc_main = require('electron').ipcMain
-ipc_main.on('open-image', (event, arg) ->
+ipc_main.on 'open-image', (event, arg) ->
   # If this is a tif then we can't open it in the browser window.
   # If it is any other type of image we open it in our own window.
   if _.includes(arg, 'tif')
@@ -90,9 +90,9 @@ ipc_main.on('open-image', (event, arg) ->
       image_window = null
     image_window.loadURL(arg)
     image_window.show()
-)
 
-ipc_main.on('open-jp2', (event, arg) ->
+
+ipc_main.on 'open-jp2', (event, arg) ->
   jp2_window = new (electron.BrowserWindow)(
     show: false
     width: 1000
@@ -106,7 +106,7 @@ ipc_main.on('open-jp2', (event, arg) ->
   url = "file://#{__dirname}/views/openseadragon.html?id=#{encoded_image_path}"
   jp2_window.loadURL(url)
   jp2_window.show()
-)
+
 
 ipc_main.on 'retry-launch', (event, arg) ->
   checkWhich()
