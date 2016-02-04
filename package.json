@@ -16,7 +16,8 @@
     "test": "xo",
     "start": "electron .",
     "foreman": "foreman start -f Procfile",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --all --asar --version=$npm_package_electronVersion"
+    "buildl": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --platform=linux --arch=x64 --version=$npm_package_electronVersion",
+    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --all --version=$npm_package_electronVersion"
   },
   "keywords": [
     "electron-app",
@@ -32,6 +33,7 @@
     "handlebars": "^4.0.5",
     "jquery": "^1.7.4",
     "koa": "^1.1.2",
+    "lodash": "^4.2.1",
     "openseadragon": "^2.1.0",
     "prettysize": "0.0.3",
     "sharp": "^0.12.2",
