@@ -1,0 +1,82 @@
+html,
+body {
+  padding: 0;
+  margin: 0; }
+
+body {
+  font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+  color: #1a1a1a;
+  background-color: #dbdbdb; }
+
+h1 {
+  text-align: center; }
+
+.settings-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-right: 10px; }
+  .settings-container .settings {
+    font-size: 3em; }
+
+.pan-zoom-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-left: 10px; }
+  .pan-zoom-container .launch-pan-zoom {
+    font-size: 3em; }
+  .pan-zoom-container input {
+    display: none; }
+
+.dropzone {
+  box-sizing: border-box;
+  border: 2px dashed #0B85A1;
+  /*width:400px;*/
+  color: #92AAB0;
+  text-align: left;
+  vertical-align: middle;
+  padding: 10px 10px 10 10px;
+  margin-bottom: 10px;
+  font-size: 200%;
+  height: 160px; }
+
+.dragover {
+  background-color: #DEDEDE; }
+
+.dragdroptext {
+  text-align: center; }
+
+.file-select-input,
+.commands,
+.convert-overall-spinner,
+.all-done-checkmark,
+.output-jp2-container,
+.restart {
+  display: none; }
+
+.commands {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+/* This is a line that is currently being worked on */
+.working-line {
+  background-color: #b7a8ff; }
+
+/*header {
+  position: absolute;
+  width: 500px;
+  height: 250px;
+  top: 50%;
+  left: 50%;
+  margin-top: -125px;
+  margin-left: -250px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 60px;
+  font-weight: 100;
+  margin: 0;
+  padding: 0;
+}*/

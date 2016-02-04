@@ -1,5 +1,3 @@
-
-
 class IIIFRequestParams
   constructor: (@url, @image_info) ->
     console.log @url

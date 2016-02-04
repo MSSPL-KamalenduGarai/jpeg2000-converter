@@ -13,7 +13,7 @@ kdu_compress = 'kdu_compress'
 
 fs = require('fs')
 Configstore = require('configstore')
-package_json = require('./package.json')
+package_json = require('../package.json')
 expand_home_dir = require('expand-home-dir')
 iiif_conversion_dir = expand_home_dir('~/iiif_conversion')
 
@@ -36,7 +36,7 @@ createMainWindow = ->
       height: 900
       icon: './app/images/image-image.png')
     win.setMenu(null)
-    win.loadURL("file://#{__dirname}/app/views/index.html")
+    win.loadURL("file://#{__dirname}/views/index.html")
     win.on 'closed', ->
       win = null
     # win.output_dir = settings.get('output_dir')
@@ -50,7 +50,7 @@ createInstallWindow = ->
     # frame: false
     icon: './app/images/image-image.png')
   win.setMenu(null)
-  win.loadURL("file://#{__dirname}/app/views/install.html")
+  win.loadURL("file://#{__dirname}/views/install.html")
   win.on 'closed', checkWhich
   win
 
@@ -61,7 +61,7 @@ openSettings = ->
     # frame: false
     icon: './app/images/image-image.png')
   win.setMenu(null)
-  win.loadURL("file://#{__dirname}/app/views/settings.html")
+  win.loadURL("file://#{__dirname}/views/settings.html")
   win.settings = settings
   win.on 'closed', ->
     settingsWindow = null
@@ -103,7 +103,7 @@ ipc_main.on('open-jp2', (event, arg) ->
   jp2_window.on 'closed', ->
     jp2_window = null
   encoded_image_path = encodeURIComponent arg
-  url = "file://#{__dirname}/app/views/openseadragon.html?id=#{encoded_image_path}"
+  url = "file://#{__dirname}/views/openseadragon.html?id=#{encoded_image_path}"
   jp2_window.loadURL(url)
   jp2_window.show()
 )
@@ -140,8 +140,8 @@ app.on 'ready', ->
 ###
 a koa application
 ###
-IIIFInfo = require('./app/javascripts/iiif-info')
-IIIFRequest = require('./app/javascripts/iiif-request')
+IIIFInfo = require('./javascripts/iiif-info')
+IIIFRequest = require('./javascripts/iiif-request')
 koa = require('koa')
 koa_app = koa()
 _ = require('lodash')

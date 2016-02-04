@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Installation Instructions for JPEG2000 Conversion GUI</title>
-    
+
     <link rel="stylesheet" href="../../node_modules/foundation-sites/dist/foundation.css" type="text/css">
     <link rel="stylesheet" href="../../node_modules/font-awesome/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../stylesheets/index.less" type="text/css">
-    <link rel="stylesheet" href="../stylesheets/install.less">
+    <link rel="stylesheet" href="../stylesheets/index.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/install.css">
 
-    <script src="../javascripts/install.coffee" charset="utf-8"></script>
+    <script src="../javascripts/install.js" charset="utf-8"></script>
   </head>
   <body>
     <div class="container">
@@ -22,7 +22,8 @@
             <p>Before using this tool you must <a id="open-install" class="button" href="#">install the Kakadu executables </a> and have the kdu_compress and kdu_expand commands in your PATH. On a Mac or Linux system you can check that these are installed by typing the following into a console: <code>which kdu_compress</code>. If you see the path to the command then it is installed and you are ready to go!</p>
           </div>
           <div class="row" id="kdu_compress-polling">
-            I'm checking to see whether <code>kdu_compress</code> is installed yet. <i class="fa fa-spinner fa-pulse"></i>
+            I'm checking to see whether <code>kdu_compress</code> is installed yet.
+            <i class="fa fa-spinner fa-pulse"></i>
           </div>
           <div class="row" id="retry-launch-section">
             Looks like <code>kdu_compress</code> is installed now!
