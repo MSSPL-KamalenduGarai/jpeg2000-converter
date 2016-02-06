@@ -15,5 +15,14 @@
     "publisher": "North Carolina State University",
     "icon" : "app/images/image-image.ico",
     "verbosity": 1
+  },
+  "linux": {
+    "arch": 64,
+    "target" : "deb",
+    "version" : "0.0.0.0",
+    "title" : "JPEG2000 Conversion GUI",
+    "comment" : "This is a comment",
+    "executable" : "jpeg2000-conversion-gui",
+    "maintainer": "Jason Ronallo <jronallo@gmail.com>"
   }
 }
