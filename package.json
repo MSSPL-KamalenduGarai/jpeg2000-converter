@@ -16,8 +16,12 @@
     "test": "xo",
     "start": "electron .",
     "foreman": "foreman start -f Procfile",
-    "buildl": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --platform=linux --arch=x64 --version=$npm_package_electronVersion",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --all --version=$npm_package_electronVersion"
+    "pack:osx": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --platform=darwin --arch=x64 --version=$npm_package_electronVersion",
+    "pack:win": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --platform=win32 --arch=x64 --version=$npm_package_electronVersion",
+    "pack:linux": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --platform=linux --arch=x64 --version=$npm_package_electronVersion",
+    "pack:all": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --all --version=$npm_package_electronVersion",
+    "build:osx": "npm run pack:osx && electron-builder dist/jpeg2000-conversion-gui-darwin-x64 --platform=osx --out=dist/osx --config=builder.json",
+    "build:win": "npm run pack:win && electron-builder dist/jpeg2000-conversion-gui-win32-x64 --platform=win --out=dist/win --config=builder.json"
   },
   "keywords": [
     "electron-app",
@@ -43,6 +47,7 @@
   },
   "devDependencies": {
     "coffee-script": "^1.10.0",
+    "electron-builder": "^2.6.0",
     "electron-packager": "^5.0.0",
     "electron-prebuilt": "^0.36.7",
     "electron-rebuild": "^1.1.1",
