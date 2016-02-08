@@ -73,24 +73,9 @@ require('crash-reporter').start()
 # adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')({showDevTools: true})
 
-ipc_main = require('electron').ipcMain
+ipc_main = electron.ipcMain
 ipc_main.on 'open-image', (event, arg) ->
-  # If this is a tif then we can't open it in the browser window.
-  # If it is any other type of image we open it in our own window.
-  if _.includes(arg, 'tif')
-    shell.openExternal(arg)
-  else
-    image_window = new (electron.BrowserWindow)(
-      width: 1000
-      height: 1000
-      show: false
-      icon: './app/images/image-image.png')
-    image_window.setMenu(null)
-    image_window.on 'closed', ->
-      image_window = null
-    image_window.loadURL(arg)
-    image_window.show()
-
+  shell.openExternal(arg)
 
 ipc_main.on 'open-jp2', (event, arg) ->
   jp2_window = new (electron.BrowserWindow)(
@@ -154,7 +139,8 @@ koa_app.use (next) ->
   if _.includes(url, 'info.json')
     url_parts = url.split('/')
     id = url_parts[url_parts.length - 2]
-    iiif_info = new IIIFInfo(decodeURIComponent id)
+    image_path = decodeURIComponent id
+    iiif_info = new IIIFInfo(image_path)
     info = iiif_info.info()
     @.body = info
   else

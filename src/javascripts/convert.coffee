@@ -12,11 +12,10 @@ settings = electron.remote.getCurrentWindow().settings
 # to a TIFF that kdu_compress will like so we use imagemagick.
 convert_to_tiff = (path, tif_tmp, async_callback) ->
   convert_cmd = "convert #{path} #{tif_tmp}"
-  child_process.exec(convert_cmd,
+  child_process.exec convert_cmd,
     (stdout, stderr) ->
       console.log "tiff: #{tif_tmp}"
       async_callback()
-  )
 
 tiff2rgba = (tif_tmp, tif_tmp_rgba, async_callback) ->
   child_process.exec("tiff2rgba -c none #{tif_tmp} #{tif_tmp_rgba}",
@@ -27,12 +26,12 @@ tiff2rgba = (tif_tmp, tif_tmp_rgba, async_callback) ->
   )
 
 kdu_compress = (tif_tmp_rgba, output_file, async_callback) ->
-  cmd = kdu_command(tif_tmp_rgba, output_file)
-  child_process.exec(cmd, (stdout2, stderr2) ->
+  cmd = kdu_command tif_tmp_rgba, output_file
+  child_process.exec cmd, (stdout2, stderr2) ->
     console.log "jp2: #{output_file}"
     fs.unlinkSync(tif_tmp_rgba)
     async_callback()
-  )
+
 
 update_completed_number = () ->
   completed_number_text = $('.completed_number').text()

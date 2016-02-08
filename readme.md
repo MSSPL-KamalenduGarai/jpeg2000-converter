@@ -7,16 +7,22 @@ Written using Electron. Proof of concept.
 ## Dev
 
 ```shell
-$ npm install
+npm install
 ```
 
 ### Run
 
 ```shell
-$ npm start
+npm start
 ```
 
-### Build
+### Watch and Compile
+
+```shell
+npm run foreman
+```
+
+### Build for release
 
 ```shell
 $ npm run build

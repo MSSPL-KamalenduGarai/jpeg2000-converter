@@ -103,26 +103,10 @@
     showDevTools: true
   });
 
-  ipc_main = require('electron').ipcMain;
+  ipc_main = electron.ipcMain;
 
   ipc_main.on('open-image', function(event, arg) {
-    var image_window;
-    if (_.includes(arg, 'tif')) {
-      return shell.openExternal(arg);
-    } else {
-      image_window = new electron.BrowserWindow({
-        width: 1000,
-        height: 1000,
-        show: false,
-        icon: './app/images/image-image.png'
-      });
-      image_window.setMenu(null);
-      image_window.on('closed', function() {
-        return image_window = null;
-      });
-      image_window.loadURL(arg);
-      return image_window.show();
-    }
+    return shell.openExternal(arg);
   });
 
   ipc_main.on('open-jp2', function(event, arg) {
@@ -198,12 +182,13 @@
   _ = require('lodash');
 
   koa_app.use(function*(next) {
-    var id, iiif_info, iiif_request, image, info, path, url, url_parts;
+    var id, iiif_info, iiif_request, image, image_path, info, path, url, url_parts;
     url = this.request.url;
     if (_.includes(url, 'info.json')) {
       url_parts = url.split('/');
       id = url_parts[url_parts.length - 2];
-      iiif_info = new IIIFInfo(decodeURIComponent(id));
+      image_path = decodeURIComponent(id);
+      iiif_info = new IIIFInfo(image_path);
       info = iiif_info.info();
       return this.body = info;
     } else {
