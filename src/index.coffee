@@ -125,33 +125,56 @@ app.on 'ready', ->
 ###
 a koa application
 ###
-IIIFInfo = require('./javascripts/iiif-info')
-IIIFRequest = require('./javascripts/iiif-request')
-koa = require('koa')
-koa_app = koa()
+iiif = require 'iiif-image'
+Informer = iiif.InformerJp2Openjpeg
+Parser = iiif.ImageRequestParser
+InfoJSONCreator = iiif.InfoJSONCreator
+Extractor = iiif.Extractor('opj')
+
+express = require('express')
+express_app = express()
 _ = require('lodash')
 
 # image_path = (id) ->
 #   "#{settings.get('output_dir')}/#{id}.jp2"
 
-koa_app.use (next) ->
-  url = @.request.url
+express_app.get '*info.json', (req, res) ->
+  url = req.url
   if _.includes(url, 'info.json')
+    # console.log 'info.json'
     url_parts = url.split('/')
     id = url_parts[url_parts.length - 2]
     image_path = decodeURIComponent id
-    iiif_info = new IIIFInfo(image_path)
-    info = iiif_info.info()
-    @.body = info
-  else
-    url_parts = @url.split('/')
-    id = url_parts[1]
-    path = decodeURIComponent id
-    iiif_request = new IIIFRequest(url, path)
-    image = iiif_request.response_image()
-    @.response.type = 'image/jpeg'
-    @.response.body = image
-    yield next
+    scheme = if req.connection.encrypted? then 'https' else 'http'
+    server_info =
+      id: "#{scheme}://#{req.headers.host}/#{id}"
+      level: 1
+    info_cb = (info) ->
+      info_json_creator = new InfoJSONCreator info, server_info
+      # console.log info_json_creator.info_json
+      res.send info_json_creator.info_json
+    informer = new Informer image_path, info_cb
+    informer.inform()
 
+express_app.get '*.(jpg|png)', (req, res) ->
+  url = req.url
+  parser = new Parser url
+  params = parser.parse()
+  image_path = decodeURIComponent params.identifier
 
-koa_app.listen 3000
+  extractor_cb = (image) ->
+    res.setHeader 'Content-Type', 'image/jpeg'
+    res.send image
+
+  info_cb = (info) ->
+    options =
+      path: image_path
+      params: params # from ImageRequestParser
+      info: info
+    extractor = new Extractor options, extractor_cb
+    extractor.extract()
+
+  informer = new Informer image_path, info_cb
+  informer.inform()
+
+express_app.listen 3000
