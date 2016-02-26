@@ -123,7 +123,7 @@ app.on 'ready', ->
 an express application
 ###
 iiif = require 'iiif-image'
-Informer = iiif.InformerJp2Openjpeg
+Informer = iiif.Informer('kdu')
 Parser = iiif.ImageRequestParser
 InfoJSONCreator = iiif.InfoJSONCreator
 Extractor = iiif.Extractor('kdu')

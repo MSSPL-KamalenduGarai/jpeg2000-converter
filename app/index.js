@@ -167,7 +167,7 @@
 
   iiif = require('iiif-image');
 
-  Informer = iiif.InformerJp2Openjpeg;
+  Informer = iiif.Informer('kdu');
 
   Parser = iiif.ImageRequestParser;
 

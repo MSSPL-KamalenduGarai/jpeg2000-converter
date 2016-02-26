@@ -37,7 +37,7 @@
     "font-awesome": "^4.5.0",
     "foundation-sites": "^6.1.1",
     "handlebars": "^4.0.5",
-    "iiif-image": "0.0.2",
+    "iiif-image": "0.0.16",
     "jquery": "^1.7.4",
     "lodash": "^4.2.1",
     "openseadragon": "^2.1.0",
