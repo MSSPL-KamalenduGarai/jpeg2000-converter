@@ -67,11 +67,8 @@ openSettings = ->
     settingsWindow = null
   win
 
-# report crashes to the Electron project
-require('crash-reporter').start()
-
 # adds debug features like hotkeys for triggering dev tools and reload
-require('electron-debug')({showDevTools: true})
+# require('electron-debug')({showDevTools: true})
 
 ipc_main = electron.ipcMain
 ipc_main.on 'open-image', (event, arg) ->
@@ -123,20 +120,17 @@ app.on 'ready', ->
     checkWhich()
 
 ###
-a koa application
+an express application
 ###
 iiif = require 'iiif-image'
 Informer = iiif.InformerJp2Openjpeg
 Parser = iiif.ImageRequestParser
 InfoJSONCreator = iiif.InfoJSONCreator
-Extractor = iiif.Extractor('opj')
+Extractor = iiif.Extractor('kdu')
 
 express = require('express')
 express_app = express()
 _ = require('lodash')
-
-# image_path = (id) ->
-#   "#{settings.get('output_dir')}/#{id}.jp2"
 
 express_app.get '*info.json', (req, res) ->
   url = req.url

@@ -97,12 +97,6 @@
     return win;
   };
 
-  require('crash-reporter').start();
-
-  require('electron-debug')({
-    showDevTools: true
-  });
-
   ipc_main = electron.ipcMain;
 
   ipc_main.on('open-image', function(event, arg) {
@@ -168,7 +162,7 @@
 
 
   /*
-  a koa application
+  an express application
    */
 
   iiif = require('iiif-image');
@@ -179,7 +173,7 @@
 
   InfoJSONCreator = iiif.InfoJSONCreator;
 
-  Extractor = iiif.Extractor('opj');
+  Extractor = iiif.Extractor('kdu');
 
   express = require('express');
 
