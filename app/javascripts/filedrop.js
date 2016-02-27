@@ -17,29 +17,38 @@
   electron = require('electron');
 
   handle_files = function(files) {
-    var image_number, index;
+    var file, file_list, i, image_number, index, j, len, len1, line, ref;
     image_number = $('.image_number').html();
     index = image_number !== '' ? parseInt(image_number) : 0;
-    return async.each(files, function(file, async_callback) {
+    $('.image_number').html(files.length);
+    file_list = [];
+    for (i = 0, len = files.length; i < len; i++) {
+      file = files[i];
+      file_list.push(file);
+    }
+    ref = file_list.reverse();
+    for (j = 0, len1 = ref.length; j < len1; j++) {
+      file = ref[j];
+      line = hbs_render('file_row', {
+        path: file.path,
+        filesize: prettysize(file.size)
+      });
+      $('#container').prepend(line);
+      modal.close();
+    }
+    new Notification(files.length + " image(s) added and ready to be processed!");
+    $('#commands').show();
+    return async.eachSeries(files, function(file, async_callback) {
       console.log(file);
       return sharp(file.path).limitInputPixels(2147483647).resize(null, 100).toFormat('png').toBuffer().then(function(output) {
-        var image, line;
+        var image, img, path;
         image = output.toString('base64');
-        line = hbs_render('file_row', {
-          path: file.path,
-          image: image,
-          filesize: prettysize(file.size)
-        });
-        $('#container').prepend(line);
-        index++;
-        $('.image_number').html(index);
-        $('#commands').show();
+        path = file.path;
+        img = $(".path-to-file:contains(" + path + ")").parent('.file-row').find('img');
+        $(img[0]).prop('src', "data:image/png;base64," + image);
         return async_callback();
       });
-    }, function() {
-      modal.close();
-      return new Notification(index + " image(s) added and ready to be processed!");
-    });
+    }, function() {});
   };
 
   open_files_added_modal = function(number) {

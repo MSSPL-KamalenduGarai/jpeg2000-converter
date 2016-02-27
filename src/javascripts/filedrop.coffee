@@ -11,10 +11,20 @@ electron = require('electron')
 handle_files = (files) ->
   image_number = $('.image_number').html()
   index = if image_number != '' then parseInt(image_number) else 0
+  $('.image_number').html(files.length)
+  file_list = []
+  for file in files
+    file_list.push file
+  for file in file_list.reverse()
+    line = hbs_render('file_row',
+      {path: file.path, filesize: prettysize(file.size) })
+    $('#container').prepend(line)
+    modal.close()
+    # Note we don't need to ask permission!
+  new Notification("#{files.length} image(s) added and ready to be processed!")
+  $('#commands').show()
 
-  # ipc_renderer.send('files-being-added-dialog', files.length)
-
-  async.each(
+  async.eachSeries(
     files
     (file, async_callback) ->
       console.log file
@@ -25,18 +35,12 @@ handle_files = (files) ->
         .toBuffer().then(
           (output) ->
             image = output.toString('base64')
-            line = hbs_render('file_row',
-              {path: file.path, image: image, filesize: prettysize(file.size) })
-            $('#container').prepend(line)
-            index++
-            $('.image_number').html(index)
-            $('#commands').show()
-            async_callback()
-      )
+            path = file.path
+            img = $(".path-to-file:contains(#{path})").parent('.file-row').find('img')
+            $(img[0]).prop 'src', "data:image/png;base64,#{image}"
+            async_callback())
     -> #done
-      modal.close()
-      # Note we don't need to ask permission!
-      new Notification("#{index} image(s) added and ready to be processed!")
+
   )
 
 open_files_added_modal = (number) ->
