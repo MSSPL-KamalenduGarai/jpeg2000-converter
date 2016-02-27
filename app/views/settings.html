@@ -5,15 +5,19 @@
     <title>Settings</title>
 
     <link rel="stylesheet" href="../../node_modules/foundation-sites/dist/foundation.css" type="text/css">
-
+    <link rel="stylesheet" href="../../node_modules/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/settings.css" type="text/css">
     <script src="../javascripts/settings.js"></script>
   </head>
-  <body>
-    <header>
-      <h1>Settings</h1>
-    </header>
+  <body id='settings_page'>
     <section class="main">
       <div class="column">
+        <div class="row">
+          <header>
+            <h1>Settings</h1>
+          </header>
+          <i class="fa fa-arrows" style="-webkit-app-region: drag"></i>
+        </div>
         <div class="row">
           The JPEG2000 files created with this application will be saved here:
           <div><span id="output_dir"></span></div>
@@ -33,6 +37,9 @@
           </div>
         </div>
 
+        <div class="row">
+          <a href="#" class="button" id="close_window">Close</a>
+        </div>
 
       </div>
     </section>

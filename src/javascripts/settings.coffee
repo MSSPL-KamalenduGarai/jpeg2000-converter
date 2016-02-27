@@ -1,6 +1,7 @@
 $ = require('jquery')
 electron = require('electron')
-settings = electron.remote.getCurrentWindow().settings
+current_window = electron.remote.getCurrentWindow()
+settings = current_window.settings
 ipc_renderer = require('electron').ipcRenderer
 
 insert_output_dir = ->
@@ -25,3 +26,6 @@ $(document).ready ->
 
   $('#jp2_binary').on 'change', (e) ->
     settings.set 'jp2_binary', e.target.id
+
+  $('#close_window').on 'click', ->
+    current_window.close()

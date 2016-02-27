@@ -75,7 +75,7 @@ openSettings = ->
   win = new (electron.BrowserWindow)(
     width: 400
     height: 500
-    # frame: false
+    frame: false
     icon: './app/images/image-image.png')
   win.setMenu(null)
   win.loadURL("file://#{__dirname}/views/settings.html")
