@@ -19,14 +19,29 @@
       <section class="main">
         <div class="column">
           <div class="row">
-            <p>Before using this tool you must <a id="open-install" class="button" href="#">install the Kakadu executables </a> and have the kdu_compress and kdu_expand commands in your PATH. On a Mac or Linux system you can check that these are installed by typing the following into a console: <code>which kdu_compress</code>. If you see the path to the command then it is installed and you are ready to go!</p>
+            <h2>Installation</h2>
+            <p>Before using this tool you must have executables installed that
+              can convert an image into a JPEG2000 (JP2) image. You have two
+              choices. You can either install the open source OpenJPEG tools
+              or the proprietary Kakadu ones.</p>
+            <p>
+              <a id="open-install-opj" href="#" class="button">Install OpenJPEG</a>
+              to have the <code>opj_compress</code> and <code>opj_decompress</code>
+              commands in your PATH.
+            </p>
+            <p>
+              <a id="open-install-kdu" class="button" href="#">Install the Kakadu executables </a> and have the kdu_compress and kdu_expand commands in your PATH. On a Mac or Linux system you can check that these are installed by typing the following into a console: <code>which kdu_compress</code>. If you see the path to the command then it is installed and you are ready to go!</p>
           </div>
           <div class="row" id="kdu_compress-polling">
             I'm checking to see whether <code>kdu_compress</code> is installed yet.
             <i class="fa fa-spinner fa-pulse"></i>
           </div>
+          <div class="row" id="opj_compress-polling">
+            I'm checking to see whether <code>opj_compress</code> is installed yet.
+            <i class="fa fa-spinner fa-pulse"></i>
+          </div>
           <div class="row" id="retry-launch-section">
-            Looks like <code>kdu_compress</code> is installed now!
+            Looks like <code id="kdu_installed-launch">kdu_compress</code> <code id="opj_installed-launch">opj_compress</code> is installed now!
             <a href="#" id="retry-launch" class="button">Retry launching the application</a>
           </div>
         </div>

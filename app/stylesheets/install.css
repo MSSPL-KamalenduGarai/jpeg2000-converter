@@ -1,3 +1,6 @@
 #retry-launch-section,
-#kdu_compress-polling {
+#kdu_compress-polling,
+#opj_compress-polling,
+#kdu_installed-launch,
+#opj_installed-launch {
   display: none; }

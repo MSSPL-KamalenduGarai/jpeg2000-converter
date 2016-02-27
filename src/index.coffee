@@ -3,13 +3,14 @@
 mainWindow = undefined
 installWindow = undefined
 settingsWindow = undefined
-kakaduInstalled = false
+jp2_binary_installed = false
 electron = require('electron')
 shell = electron.shell
 dialog = electron.dialog
 app = electron.app
 which = require('which')
 kdu_compress = 'kdu_compress'
+opj_compress = 'opj_compress'
 
 fs = require('fs')
 Configstore = require('configstore')
@@ -20,14 +21,17 @@ iiif_conversion_dir = expand_home_dir('~/iiif_conversion')
 settings = new Configstore(package_json.name)
 
 checkWhich = ->
-  which kdu_compress, (err, path) ->
-    if err #open a window with instructions on installing kakadu binaries
-      installWindow = createInstallWindow()
-    else
-      kakaduInstalled = true
-      installWindow.close() if installWindow?
-      installWindow = null
-      mainWindow = createMainWindow()
+  if settings.jp_binary
+    which settings.jp_binary, (err, path) ->
+      if err #open a window with instructions on installing kakadu binaries
+        installWindow = createInstallWindow()
+      else
+        jp2_binary_installed = true
+        installWindow.close() if installWindow?
+        installWindow = null
+        mainWindow = createMainWindow()
+  else
+    installWindow = createInstallWindow()
 
 createMainWindow = ->
   if !mainWindow?
@@ -68,7 +72,7 @@ openSettings = ->
   win
 
 # adds debug features like hotkeys for triggering dev tools and reload
-# require('electron-debug')({showDevTools: true})
+require('electron-debug')({showDevTools: true})
 
 ipc_main = electron.ipcMain
 ipc_main.on 'open-image', (event, arg) ->
@@ -105,7 +109,7 @@ app.on 'window-all-closed', ->
     app.quit()
 
 app.on 'activate', ->
-  if !mainWindow && kakaduInstalled
+  if !mainWindow && jp2_binary_installed
     mainWindow = createMainWindow()
 
 app.on 'ready', ->
