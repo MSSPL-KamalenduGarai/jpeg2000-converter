@@ -25,8 +25,14 @@ tiff2rgba = (tif_tmp, tif_tmp_rgba, async_callback) ->
       async_callback()
   )
 
-kdu_compress = (tif_tmp_rgba, output_file, async_callback) ->
-  cmd = kdu_command tif_tmp_rgba, output_file
+compress = (tif_tmp_rgba, output_file, async_callback) ->
+  command_function =
+    if settings.get('jp2_binary') == 'opj'
+      opj_command
+    else
+      kdu_command
+  cmd = command_function tif_tmp_rgba, output_file
+  console.log cmd
   child_process.exec cmd, (stdout2, stderr2) ->
     console.log "jp2: #{output_file}"
     fs.unlinkSync(tif_tmp_rgba)
@@ -46,7 +52,7 @@ convert_image = (file_row, async_callback) ->
   console.log file_row
   path = $(file_row).children('.path-to-file').text()
   tif_tmp = tempfile('.tiff')
-  tif_tmp_rgba = tempfile('.tiff')
+  tif_tmp_rgba = tempfile('.tif')
   extname = pather.extname(path)
   basename = pather.basename(path, extname)
   output_dir = settings.get('output_dir')
@@ -70,7 +76,7 @@ convert_image = (file_row, async_callback) ->
       tiff2rgba(tif_tmp, tif_tmp_rgba, callback)
     (callback) ->
       fr.find('.status').html('creating JP2')
-      kdu_compress(tif_tmp_rgba, jp2_file, callback)
+      compress(tif_tmp_rgba, jp2_file, callback)
     (callback) ->
       fr.find('.status').html('<i class="fa fa-check"></i> completed')
       fr.find('.fa-spinner').hide()
@@ -123,3 +129,6 @@ kdu_command = (tif, output_file) ->
     Creversible=no
     -no_weights
     -i #{tif} -o #{output_file}"
+
+opj_command = (tif, output_file) ->
+  """opj_compress -i #{tif} -o #{output_file} -r 2.5 -n 7 -c "[256,256]"  -b "64,64" -p RPCL -SOP -t 1024,1024 -TP R"""

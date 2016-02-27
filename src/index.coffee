@@ -8,9 +8,6 @@ electron = require('electron')
 shell = electron.shell
 dialog = electron.dialog
 app = electron.app
-which = require('which')
-kdu_compress = 'kdu_compress'
-opj_compress = 'opj_compress'
 
 fs = require('fs')
 Configstore = require('configstore')
@@ -20,9 +17,25 @@ iiif_conversion_dir = expand_home_dir('~/iiif_conversion')
 
 settings = new Configstore(package_json.name)
 
+which = require('which')
+kdu_compress = 'kdu_compress'
+opj_compress = 'opj_compress'
+
+jp2_binary_compress =
+  if settings.get('jp2_binary') == 'kdu'
+    kdu_compress
+  else if settings.get('jp2_binary') == 'opj'
+    opj_compress
+  else
+    settings.set('jp2_binary', 'opj')
+    opj_compress
+
+jp2_binary = settings.get 'jp2_binary'
+
 checkWhich = ->
-  if settings.jp_binary
-    which settings.jp_binary, (err, path) ->
+  console.log settings.get 'jp2_binary'
+  if settings.get 'jp2_binary'
+    which jp2_binary_compress, (err, path) ->
       if err #open a window with instructions on installing kakadu binaries
         installWindow = createInstallWindow()
       else
@@ -127,10 +140,11 @@ app.on 'ready', ->
 an express application
 ###
 iiif = require 'iiif-image'
-Informer = iiif.Informer('kdu')
+
+Informer = iiif.Informer(jp2_binary)
 Parser = iiif.ImageRequestParser
 InfoJSONCreator = iiif.InfoJSONCreator
-Extractor = iiif.Extractor('kdu')
+Extractor = iiif.Extractor(jp2_binary)
 
 express = require('express')
 express_app = express()
