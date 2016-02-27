@@ -18,8 +18,22 @@
           The JPEG2000 files created with this application will be saved here:
           <div><span id="output_dir"></span></div>
           <div><a href="#" class="button" id="change-output-directory">Change the output directory</a>
-          </div>           
+          </div>
         </div>
+
+        <div class="row">
+          JP2 Binary:
+          <div>
+            <form id="jp2_binary">
+              <input type="radio" name="jp2_binary" value="opj" id="opj">
+              <label for="opj">OpenJPEG</label>
+              <input type="radio" name="jp2_binary" value="kdu" id="kdu">
+              <label for="kdu">Kakadu</label>
+            </form>
+          </div>
+        </div>
+
+
       </div>
     </section>
     <input type="file" id="file-select-input" class="file-select-input" directory webkitdirectory style="display:none">

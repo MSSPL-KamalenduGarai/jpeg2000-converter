@@ -74,7 +74,7 @@ createInstallWindow = ->
 openSettings = ->
   win = new (electron.BrowserWindow)(
     width: 400
-    height: 200
+    height: 500
     # frame: false
     icon: './app/images/image-image.png')
   win.setMenu(null)

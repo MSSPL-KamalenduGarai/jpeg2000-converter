@@ -6,8 +6,12 @@ ipc_renderer = require('electron').ipcRenderer
 insert_output_dir = ->
   $('#output_dir').html(settings.get('output_dir'))
 
+check_jp2_binary = ->
+  $("##{settings.get('jp2_binary')}").prop('checked', true)
+
 $(document).ready ->
   insert_output_dir()
+  check_jp2_binary()
 
   $('#change-output-directory').on 'click', ->
     $('#file-select-input').click()
@@ -18,3 +22,6 @@ $(document).ready ->
     settings.set('output_dir', path)
     insert_output_dir()
     ipc_renderer.send('open-mainwindow-if-not')
+
+  $('#jp2_binary').on 'change', (e) ->
+    settings.set 'jp2_binary', e.target.id
