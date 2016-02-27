@@ -31,9 +31,6 @@ $ npm run build
 Builds the app for OS X, Linux, and Windows, using [electron-packager](https://github.com/maxogden/electron-packager).
 
 ## TODO
-- pick opj or kdu
-- allow for picking kdu profile (lossless or lossy)
-
 - Add thumbnail images async
 - Create a video showing how this works
 - Animate or highlight "all done" when images are finished processing
