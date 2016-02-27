@@ -12,6 +12,9 @@ handle_files = (files) ->
   image_number = $('.image_number').html()
   index = if image_number != '' then parseInt(image_number) else 0
   $('.image_number').html(files.length)
+  # This is what we need to do to reverse the file list because FileList is
+  # not an array and can't be reversed! But we want to process the last file
+  # thumbnail first because we add new files to the top.
   file_list = []
   for file in files
     file_list.push file
