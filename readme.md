@@ -4,7 +4,7 @@
 
 Written using Electron. Proof of concept.
 
-**Convert images to JP2**<br>
+**Convert images to JP2**
 ![file selection and conversation](./gifs/file-selection-2.gif)
 
 **View any JP2 in OpenSeadragon**
