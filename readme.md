@@ -63,11 +63,12 @@ npm run foreman
 ```shell
 npm run build:linux
 npm run build:win
+npm run build:osx
 ```
 
 You should find a deb package in dist/linux and Windows installer in dist/win.
 
-Builds the app for OS X, Linux, and Windows, using [electron-packager](https://github.com/maxogden/electron-packager).
+Builds the app for OS X, Linux, and Windows, using [electron-packager](https://github.com/maxogden/electron-packager) and [electron-builder](https://github.com/loopline-systems/electron-builder).
 
 ## TODO
 - Animate or highlight "all done" when images are finished processing
