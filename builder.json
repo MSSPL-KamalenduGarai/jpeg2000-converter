@@ -1,6 +1,6 @@
 {
   "osx" : {
-    "title": "JPEG2000 Conversion GUI",
+    "title": "JPEG2000 Converter",
     "background": "app/images/image-image.png",
     "icon": "app/images/image-image.icns",
     "icon-size": 128,
@@ -10,8 +10,8 @@
     ]
   },
   "win" : {
-    "title" : "JPEG2000 Conversion GUI",
-    "version" : "0.0.0.0",
+    "title" : "JPEG2000 Converter",
+    "version" : "0.0.2",
     "publisher": "North Carolina State University",
     "icon" : "app/images/image-image.ico",
     "verbosity": 1
@@ -19,10 +19,10 @@
   "linux": {
     "arch": 64,
     "target" : "deb",
-    "version" : "0.0.0.0",
-    "title" : "JPEG2000 Conversion GUI",
+    "version" : "0.0.2",
+    "title" : "JPEG2000 Converter",
     "comment" : "This is a comment",
-    "executable" : "jpeg2000-conversion-gui",
+    "executable" : "jpeg2000-converter",
     "maintainer": "Jason Ronallo <jronallo@gmail.com>"
   }
 }
