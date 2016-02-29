@@ -5,9 +5,11 @@
 Written using Electron. Proof of concept.
 
 **Convert images to JP2**
+
 ![file selection and conversation](./gifs/file-selection-2.gif)
 
 **View any JP2 in OpenSeadragon**
+
 ![OpenSeadragon](./gifs/pan-zoom.gif)
 
 ## Requirements
@@ -32,7 +34,7 @@ Yes, that's a lot of dependencies that need to be installed. Yes, if this projec
 
 While this is probably in a pre-alpha state, please do give it a try and file issues.
 
-You can either clone the repo and follow the development instructions below or install one of the [pre-alpha packaged releases/installers](https://github.com/jronallo/jpeg2000-converter/releases). See the license for terms for these binaries. I've tried the deb package on Ubuntu 15.10, but have not tried the Windows package. 
+You can either clone the repo and follow the development instructions below or install one of the [pre-alpha packaged releases/installers](https://github.com/jronallo/jpeg2000-converter/releases). See the license for terms for these binaries. I've tried the deb package on Ubuntu 15.10, but have not tried the Windows package.
 
 When you first run the application you'll be brought to the setup window where you can select an output directory (must exist) and which JP2 binary  you will be using for the conversion (select one you have installed).
 
