@@ -4,7 +4,9 @@
 
 Written using Electron. Proof of concept.
 
-## Dev
+## Development
+
+Clone the repo and do:
 
 ```shell
 npm install
