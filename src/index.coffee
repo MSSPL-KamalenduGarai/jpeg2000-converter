@@ -85,7 +85,8 @@ openSettings = ->
   win
 
 # adds debug features like hotkeys for triggering dev tools and reload
-require('electron-debug')({showDevTools: true})
+# require('electron-debug')({showDevTools: true})
+require('electron-debug')({showDevTools: false})
 
 ipc_main = electron.ipcMain
 ipc_main.on 'open-image', (event, arg) ->
