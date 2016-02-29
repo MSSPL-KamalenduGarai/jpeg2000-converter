@@ -68,8 +68,6 @@ You should find a deb package in dist/linux and Windows installer in dist/win.
 Builds the app for OS X, Linux, and Windows, using [electron-packager](https://github.com/maxogden/electron-packager).
 
 ## TODO
-- Add thumbnail images async
-- Create a video showing how this works
 - Animate or highlight "all done" when images are finished processing
 - after processing is complete for a file do some checks to make sure the JP2 has been created correctly. Size, `file`, what else?
 - Allow for automatically installing dependencies if they are not installed
