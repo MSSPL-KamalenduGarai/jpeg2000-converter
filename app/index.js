@@ -110,7 +110,7 @@
   };
 
   require('electron-debug')({
-    showDevTools: false
+    showDevTools: true
   });
 
   ipc_main = electron.ipcMain;

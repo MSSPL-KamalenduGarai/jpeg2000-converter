@@ -25,8 +25,11 @@ npm run foreman
 ### Build for release
 
 ```shell
-$ npm run build
+npm run build:linux
+npm run build:win
 ```
+
+You should find a deb package in dist/linux and Windows installer in dist/win.
 
 Builds the app for OS X, Linux, and Windows, using [electron-packager](https://github.com/maxogden/electron-packager).
 

@@ -3,6 +3,7 @@ electron = require('electron')
 current_window = electron.remote.getCurrentWindow()
 settings = current_window.settings
 ipc_renderer = require('electron').ipcRenderer
+packagejson =  require('../../package.json')
 
 insert_output_dir = ->
   $('#output_dir').html(settings.get('output_dir'))
@@ -10,7 +11,11 @@ insert_output_dir = ->
 check_jp2_binary = ->
   $("##{settings.get('jp2_binary')}").prop('checked', true)
 
+insert_version = ->
+  $('#version').html(packagejson.version)
+
 $(document).ready ->
+  insert_version()
   insert_output_dir()
   check_jp2_binary()
 
