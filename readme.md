@@ -4,6 +4,12 @@
 
 Written using Electron. Proof of concept.
 
+**Convert images to JP2**<br>
+![file selection and conversation](./gifs/file-selection-2.gif)
+
+**View any JP2 in OpenSeadragon**
+![OpenSeadragon](./gifs/pan-zoom.gif)
+
 ## Requirements
 
 In order to use this tool you will need to meet the following requirements first.
