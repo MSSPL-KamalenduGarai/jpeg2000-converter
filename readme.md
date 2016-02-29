@@ -1,8 +1,22 @@
-# JPEG2000 Converstion GUI
+# JPEG2000 Converter
 
-> A GUI for creating JPEG2000 images suitable for a IIIF images
+> A GUI for creating JPEG2000 images suitable for a IIIF image server
 
 Written using Electron. Proof of concept.
+
+## Requirements
+
+You must have a JPEG2000 compression binary installed. The application works with either the open source OpenJPEG2 (opj_compress) or the proprietary Kakadu (kdu_compress) binaries.
+
+For Mac OSX you will also need to [install libvips for sharp](http://sharp.dimens.io/en/stable/install/). Linux and Windows ought to already have libvips installed.
+
+## Install
+
+While this is probably in a pre-alpha state, please do give it a try and file issues.
+
+You can either clone the repo and follow the development instructions below or [install one of the alpha packages](https://drive.google.com/folderview?id=0ByUq6R632zOwdkhiN3QwSHpoZzg&usp=sharing).
+
+When you first run the application you'll be brought to the setup window where you can select an output directory (must exist) and which JP2 binary  you will be using for the conversion (select one you have installed).
 
 ## Development
 
