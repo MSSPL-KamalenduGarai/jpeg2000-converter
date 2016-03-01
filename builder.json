@@ -3,6 +3,7 @@
     "title": "JPEG2000 Converter",
     "background": "app/images/image-image.png",
     "icon": "app/images/image-image.icns",
+    "version" : "0.0.3",
     "icon-size": 128,
     "contents": [
       { "x": 438, "y": 344, "type": "link", "path": "/Applications" },
@@ -11,7 +12,7 @@
   },
   "win" : {
     "title" : "JPEG2000 Converter",
-    "version" : "0.0.2",
+    "version" : "0.0.3",
     "publisher": "North Carolina State University",
     "icon" : "app/images/image-image.ico",
     "verbosity": 1
@@ -19,7 +20,7 @@
   "linux": {
     "arch": 64,
     "target" : "deb",
-    "version" : "0.0.2",
+    "version" : "0.0.3",
     "title" : "JPEG2000 Converter",
     "comment" : "This is a comment",
     "executable" : "jpeg2000-converter",
