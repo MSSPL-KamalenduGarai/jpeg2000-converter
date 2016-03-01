@@ -14,9 +14,9 @@ Written using Electron. Proof of concept.
 
 ## Requirements
 
-In order to use this tool you will need to meet the following requirements first.
+In order to use this tool you will need to meet the following requirements first. If you only want to view JPEG2000 images you only need to install a JPEG2000 binary.
 
-**JP2 binary**: You must have a JPEG2000 compression binary installed. The application works with either the open source OpenJPEG2 (opj_compress) or the proprietary Kakadu (kdu_compress) binaries. See the notice below for more information on Kakadu binaries.
+**JP2 binary**: You must have a JPEG2000 compression binary installed. The application works with either the open source OpenJPEG2 (opj_compress) or the proprietary Kakadu (kdu_compress) binaries. See the notice below for more information on Kakadu binaries. You can try viewing the [sample image of Trumpler 14 from the Hubble telescope](./examples/trumpler14.jp2).
 
 **libvips**: For Mac OSX you will also need to [install libvips for sharp](http://sharp.dimens.io/en/stable/install/). Linux and Windows ought to already have libvips installed.
 
