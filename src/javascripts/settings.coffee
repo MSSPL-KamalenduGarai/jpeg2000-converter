@@ -6,7 +6,9 @@ ipc_renderer = require('electron').ipcRenderer
 packagejson =  require('../../package.json')
 
 insert_output_dir = ->
-  $('#output_dir').html(settings.get('output_dir'))
+  if settings.get 'output_dir'
+    $('#output_dir_warning').hide()
+    $('#output_dir').html(settings.get('output_dir'))
 
 check_jp2_binary = ->
   $("##{settings.get('jp2_binary')}").prop('checked', true)

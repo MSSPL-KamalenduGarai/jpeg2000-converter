@@ -15,7 +15,10 @@
   packagejson = require('../../package.json');
 
   insert_output_dir = function() {
-    return $('#output_dir').html(settings.get('output_dir'));
+    if (settings.get('output_dir')) {
+      $('#output_dir_warning').hide();
+      return $('#output_dir').html(settings.get('output_dir'));
+    }
   };
 
   check_jp2_binary = function() {

@@ -1,7 +1,7 @@
 {
   "name": "jpeg2000-converter",
   "productName": "jpeg2000-converter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "app/index.js",
   "description": "Electron GUI to convert images to JPEG2000 images",
   "license": "MIT",
@@ -15,11 +15,15 @@
   "scripts": {
     "test": "xo",
     "start": "electron .",
+    "start_debug": "JPEG2000_CONVERTER_DEBUG=true electron .",
+
     "foreman": "foreman start -f Procfile",
+
     "pack:osx": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --platform=darwin --arch=x64 --version=$npm_package_electronVersion",
     "pack:win": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --platform=win32 --arch=x64 --version=$npm_package_electronVersion",
     "pack:linux": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --platform=linux --arch=x64 --version=$npm_package_electronVersion",
     "pack:all": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --overwrite --prune --all --version=$npm_package_electronVersion",
+
     "build:osx": "npm run pack:osx && electron-builder dist/jpeg2000-converter-darwin-x64 --platform=osx --out=dist/osx --config=builder.json",
     "build:win": "npm run pack:win && electron-builder dist/jpeg2000-converter-win32-x64 --platform=win --out=dist/win --config=builder.json",
     "build:linux": "npm run pack:linux && electron-builder dist/jpeg2000-converter-linux-x64 --platform=linux --out=dist/linux --config=builder.json"

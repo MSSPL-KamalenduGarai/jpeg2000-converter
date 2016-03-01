@@ -97,7 +97,7 @@
     win = new electron.BrowserWindow({
       width: 400,
       height: 500,
-      frame: false,
+      frame: true,
       icon: './app/images/image-image.png'
     });
     win.setMenu(null);
@@ -109,9 +109,11 @@
     return win;
   };
 
-  require('electron-debug')({
-    showDevTools: true
-  });
+  if (process.env.JPEG2000_CONVERTER_DEBUG) {
+    require('electron-debug')({
+      showDevTools: true
+    });
+  }
 
   ipc_main = electron.ipcMain;
 

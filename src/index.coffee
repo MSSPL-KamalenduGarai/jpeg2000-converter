@@ -75,7 +75,7 @@ openSettings = ->
   win = new (electron.BrowserWindow)(
     width: 400
     height: 500
-    frame: false
+    frame: true
     icon: './app/images/image-image.png')
   win.setMenu(null)
   win.loadURL("file://#{__dirname}/views/settings.html")
@@ -85,7 +85,8 @@ openSettings = ->
   win
 
 # adds debug features like hotkeys for triggering dev tools and reload
-require('electron-debug')({showDevTools: true})
+if process.env.JPEG2000_CONVERTER_DEBUG
+  require('electron-debug')({showDevTools: true})
 
 ipc_main = electron.ipcMain
 ipc_main.on 'open-image', (event, arg) ->

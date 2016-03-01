@@ -52,6 +52,12 @@ npm install
 npm start
 ```
 
+Run with devtools on:
+
+```shell
+npm run start_debug
+```
+
 ### Watch and Compile
 
 ```shell
