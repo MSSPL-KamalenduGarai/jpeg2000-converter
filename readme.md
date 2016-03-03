@@ -32,9 +32,9 @@ Yes, that's a lot of dependencies that need to be installed. Yes, if this projec
 
 ## Install
 
-While this is probably in a pre-alpha state, please do give it a try and file issues.
+While this is probably in a pre-alpha state, please do give it a try and file issues. Best approach right now is to clone the repo, `npm i`, and `npm start`. 
 
-You can either clone the repo and follow the development instructions below or install one of the [pre-alpha packaged releases/installers](https://github.com/jronallo/jpeg2000-converter/releases). See the license for terms for these binaries. I've tried the deb package on Ubuntu 15.10, but have not tried the Windows package.
+You can try one of the [pre-alpha packaged releases/installers](https://github.com/jronallo/jpeg2000-converter/releases), but only the deb package on Ubuntu 15.10 is known to be working. See the license for terms for these binaries.
 
 When you first run the application you'll be brought to the setup window where you can select an output directory (must exist) and which JP2 binary  you will be using for the conversion (select one you have installed).
 

@@ -26,7 +26,9 @@
 
     "build:osx": "npm run pack:osx && electron-builder dist/jpeg2000-converter-darwin-x64 --platform=osx --out=dist/osx --config=builder.json",
     "build:win": "npm run pack:win && electron-builder dist/jpeg2000-converter-win32-x64 --platform=win --out=dist/win --config=builder.json",
-    "build:linux": "npm run pack:linux && electron-builder dist/jpeg2000-converter-linux-x64 --platform=linux --out=dist/linux --config=builder.json"
+    "build:linux": "npm run pack:linux && electron-builder dist/jpeg2000-converter-linux-x64 --platform=linux --out=dist/linux --config=builder.json",
+
+    "dist:clean": "rm -rf ./dist/*"
   },
   "keywords": [
     "electron-app",

@@ -12,6 +12,7 @@
   },
   "win" : {
     "title" : "JPEG2000 Converter",
+    "executable" : "jpeg2000-converter",
     "version" : "0.0.3",
     "publisher": "North Carolina State University",
     "icon" : "app/images/image-image.ico",
